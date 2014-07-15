@@ -1,0 +1,71 @@
+步骤1.下载VS2010 正式版，下载地址：
+
+页面：
+http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=06a32b1c-80e9-41df-ba0c-79d56cb823f7
+直 接ISO文件地址：
+http://download.microsoft.com/download/2/4/7/24733615-AA11-42E9-8883-E28CDCA88ED5/X16-42552VS2010UltimTrial1.iso
+
+步 骤2.安装文件完成后，点击此处（如下图1和2）：
+
+
+
+
+
+(图1)
+
+在卸载向导中输入序列号（如图2）：
+
+
+
+
+
+YCFHQ-9DWCY-DKV88-T2TMH-G7BHP? VS2010 SN
+
+(图2.2)
+
+步骤3.破解成功（图1）：
+
+
+
+
+
+方法二：
+
+步骤1.同教程一下步骤1，下载源文件。
+
+步骤2.解压到源文件，并找到 setup文件夹如下图所示：
+
+
+
+
+
+步骤3：打开setup文件夹并找到setup.sdb文件，如下图所示：
+
+ 
+
+
+
+
+
+ 
+
+步骤4.以记事本打开setup.sdb文件,并找到：
+
+[Product Key]
+YR3W8FCM2B7BKF9HMQFTCH7WK
+
+并 将key替换成：
+
+YCFHQ9DWCYDKV88T2TMHG7BHP
+
+如下图： 
+
+
+ 
+
+
+
+
+
+
+

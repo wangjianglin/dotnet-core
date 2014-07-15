@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/AddInControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/TaskbarNotifierContent.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/PopupTaskbar.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/AdExceptionControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/ErrorContentsControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/NetWorkExceptionControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/SystemExceptionControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/ErrorControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/BusyControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
