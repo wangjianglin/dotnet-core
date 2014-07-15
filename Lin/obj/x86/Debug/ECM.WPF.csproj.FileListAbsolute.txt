@@ -1,2 +1,0 @@
-C:\Users\lin\Desktop\资料\code\dotnet\ECM\bin\Debug\ECM.exe.config
-\\tsclient\C\Users\lin\Desktop\资料\code\dotnet\ECM\bin\Debug\ECM.exe.config
