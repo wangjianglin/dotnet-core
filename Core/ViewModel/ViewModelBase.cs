@@ -15,6 +15,7 @@ namespace Lin.Core.ViewModel
     /// 1、实现把命令绑定到方法
     /// 2、属性动态扩展
     /// 3、实现INotifyPropertyChanged
+    /// 4、属性改变绑定到方法
     /// 
     /// </summary>
     [Serializable]
@@ -345,7 +346,7 @@ namespace Lin.Core.ViewModel
             foreach (MethodInfo m in ms)
             {
                 paramCount = 0;
-                PropertyChanaged[] attributes = m.GetCustomAttributes(typeof(PropertyChanaged), true) as PropertyChanaged[];
+                PropertyChanged[] attributes = m.GetCustomAttributes(typeof(PropertyChanged), true) as PropertyChanged[];
                 if (attributes != null && attributes.Length > 0)
                 {
                     ps = m.GetParameters();
@@ -359,7 +360,7 @@ namespace Lin.Core.ViewModel
                     }
                     paramCount = ps.Length;
                 }
-                foreach (PropertyChanaged propertyChanaged in attributes)
+                foreach (PropertyChanged propertyChanaged in attributes)
                 {
                     if (propertyChangedInfos.ContainsKey(propertyChanaged.Name))
                     {

@@ -75,7 +75,7 @@ namespace Lin.Core.DataValidation
                         {
                             if (d.ContainsKey(e.PropertyName))
                             {
-                                obj.SetError(e.PropertyName, d[e.PropertyName]);
+                                //obj.SetError(e.PropertyName, d[e.PropertyName]);
                                 d.Remove(e.PropertyName);
                             }
                         };

@@ -10,9 +10,9 @@ namespace Lin.Core
     /// 
     /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
-    public class PropertyChanaged : Attribute
+    public class PropertyChanged : Attribute
     {
-        public PropertyChanaged(string name)
+        public PropertyChanged(string name)
         {
             this.Name = name;
 

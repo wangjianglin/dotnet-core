@@ -139,7 +139,7 @@ namespace Lin.Core.ViewModel
             {
                 if (!isCrossDomain)
                 {
-                    return Context.GlobalImpl[s];
+                    return null;//Context.GlobalImpl[s];
                 }
                 else
                 {
@@ -148,7 +148,7 @@ namespace Lin.Core.ViewModel
                     appdomain.DoCallBack(() =>
                     {
                         string obj = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + sKey).ToString();
-                        AppDomain.CurrentDomain.SetData(Thread.CurrentThread.ManagedThreadId + propertyKey, Context.GlobalImpl[obj]);
+                        //AppDomain.CurrentDomain.SetData(Thread.CurrentThread.ManagedThreadId + propertyKey, Context.GlobalImpl[obj]);
                     });
                     if (appdomain.GetData(Thread.CurrentThread.ManagedThreadId + propertyKey) != null)
                     {

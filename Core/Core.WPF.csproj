@@ -154,7 +154,7 @@
     <Compile Include="Markup\BaseMarkupExtension.cs" />
     <Compile Include="Markup\RoutedCommand.cs" />
     <Compile Include="Controls\TaskbarNotifierContent.cs" />
-    <Compile Include="PropertyChanaged.cs" />
+    <Compile Include="PropertyChanged.cs" />
     <Compile Include="Utils\ActionExecute.cs" />
     <Compile Include="Utils\ClearMemory.cs" />
     <Compile Include="Utils\KeyBoard.cs" />
