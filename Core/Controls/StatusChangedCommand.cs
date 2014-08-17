@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using Lin.Core.ViewModel; 
 using System.Windows.Controls;
 
 #region Namespce mapping
@@ -176,7 +175,7 @@ namespace Lin.Core.Controls
                 {
                     dataContext = fe.DataContext;
                 }
-                Lin.Core.ViewModel.ViewModel vm = dataContext as Lin.Core.ViewModel.ViewModel;
+                Lin.Core.ViewModel vm = dataContext as Lin.Core.ViewModel;
 
 
                 //先判断是否为命令，如果是则执行

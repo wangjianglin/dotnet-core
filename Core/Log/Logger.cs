@@ -68,7 +68,7 @@ namespace Lin.Core.Log
         /// <param name="level">日志级别(默认为正常信息)</param>
         public void LogRecord(string logString, LogLevel level = LogLevel.INFO)
         {
-            int _level = (int)Lin.Core.ViewModel.Context.Global.LogLevel;
+            int _level = (int)Lin.Core.ViewModel2.Context.Global.LogLevel;
             int l = (int)level;
             if (l < _level)
             {

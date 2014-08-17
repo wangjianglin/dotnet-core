@@ -6,7 +6,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading;
 
-namespace Lin.Core.ViewModel
+namespace Lin.Core.ViewModel2
 {
     internal class ListenerEvent : MarshalByRefObject
     {

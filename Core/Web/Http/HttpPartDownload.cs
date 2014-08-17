@@ -114,7 +114,7 @@ namespace Lin.Core.Web.Http
                 retryCount = 0;
                 if (_out == null)
                 {
-                    fileInfo = new FileInfo(Lin.Core.ViewModel.Context.Cache.TmpDir.FullName + "\\download_mereg_tmp_" + DateTime.Now.Ticks + "_file_name_tmp_" + resultFile.FileName);
+                    fileInfo = new FileInfo(Lin.Core.ViewModel2.Context.Cache.TmpDir.FullName + "\\download_mereg_tmp_" + DateTime.Now.Ticks + "_file_name_tmp_" + resultFile.FileName);
                     _out = fileInfo.Create();
                 }
                 FileCopy(resultFile.FileInfo, _out);

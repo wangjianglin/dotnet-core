@@ -107,7 +107,7 @@ namespace Lin.Core.Web.Http
                 f.ContentType = response.Headers["Content-Type"] + "";
 
                 //FileInfo file = new FileInfo(Path.GetTempPath() + "tmp_" + DateTime.Now.Ticks + "_" + f.FileName);
-                FileInfo file = new FileInfo(Lin.Core.ViewModel.Context.Cache.TmpDir.FullName + "\\download_tmp_" + DateTime.Now.Ticks + "_" + f.FileName);
+                FileInfo file = new FileInfo(Lin.Core.ViewModel2.Context.Cache.TmpDir.FullName + "\\download_tmp_" + DateTime.Now.Ticks + "_" + f.FileName);
 
                 f.FileInfo = file;
 

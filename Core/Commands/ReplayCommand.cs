@@ -74,7 +74,7 @@ namespace Lin.Core.Commands
             return _canExecute == null ? true : _canExecute(parameter);
         }
 
-        public void RestCanExecute()
+        public void FireCanExecute()
         {
             if (CanExecuteChanged != null)
             {

@@ -378,18 +378,18 @@ namespace Lin.Core.Web.Json
                     bool skipFlag = false;
                     foreach (PropertyInfo info in pInfos)
                     {
-                        if(info.DeclaringType == typeof(Lin.Core.ViewModel.ViewModel)){
+                        if(info.DeclaringType == typeof(Lin.Core.ViewModel)){
                             continue;
                         }
 
-                        if (info.DeclaringType == typeof(Lin.Core.ViewModel.ViewModelBase))
+                        if (info.DeclaringType == typeof(Lin.Core.ViewModel))
                         {
                             continue;
                         }
-                        if (info.DeclaringType == typeof(Lin.Core.ViewModel.ViewModelProperty))
-                        {
-                            continue;
-                        }
+                        //if (info.DeclaringType == typeof(Lin.Core.ViewModel.ViewModelProperty))
+                        //{
+                        //    continue;
+                        //}
                         arrtributes = info.GetCustomAttributes(true);
                         skipFlag = false;
                         foreach (object attribute in arrtributes)

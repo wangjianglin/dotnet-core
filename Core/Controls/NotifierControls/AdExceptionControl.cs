@@ -21,7 +21,7 @@ namespace Lin.Core.Controls.NotifierControls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(AdExceptionControl), new FrameworkPropertyMetadata(typeof(AdExceptionControl)));
         }
 
-        private Lin.Core.ViewModel.ViewModel vm = new Lin.Core.ViewModel.ViewModel();
+        private Lin.Core.ViewModel vm = new Lin.Core.ViewModel();
         public readonly static DependencyProperty AdExceptionCodeProperty = DependencyProperty.Register("AdExceptionCode", typeof(string), typeof(AdExceptionControl), new PropertyMetadata(null, (DependencyObject sender, DependencyPropertyChangedEventArgs e) =>
             {
                 //((AdExceptionControl)sender).vm.Property["ExceptionCode"] = e.NewValue;

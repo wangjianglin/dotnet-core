@@ -21,7 +21,7 @@ namespace Lin.Core.Controls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(BusyControl), new FrameworkPropertyMetadata(typeof(BusyControl)));
         }
 
-        private class BusyControlViewModel:Lin.Core.ViewModel.ViewModel
+        private class BusyControlViewModel:Lin.Core.ViewModel
         {
             BusyControl busy;
             public BusyControlViewModel(BusyControl c)

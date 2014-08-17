@@ -8,7 +8,7 @@ using System.Windows;
 using Lin.Core.Log;
 using Lin.Plugin;
 
-namespace Lin.Core.ViewModel
+namespace Lin.Core.ViewModel2
 {
     /// <summary>
     /// 记录应用程序上下文

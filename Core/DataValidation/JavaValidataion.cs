@@ -14,7 +14,7 @@ namespace Lin.Core.DataValidation
     /// </summary>
     public static class JavaValidataion
     {
-        public static void AddValidation(Lin.Core.ViewModel.ViewModel obj,ValidationErrorData error,string name="")
+        public static void AddValidation(Lin.Core.ViewModel obj,ValidationErrorData error,string name="")
         {
             if (obj == null || error == null || error.fieldErrors == null || error.fieldErrors.Count <= 0)
             {
@@ -54,16 +54,16 @@ namespace Lin.Core.DataValidation
                 {
                     try
                     {
-                        pyType = py.DeclaringType;
-                        if (pyType == typeof(Lin.Core.ViewModel.ViewModel) || pyType == typeof(Lin.Core.ViewModel.ViewModelBase) || pyType == typeof(Lin.Core.ViewModel.ViewModelProperty))
-                        {
-                            continue;
-                        }
-                        object o = py.GetValue(obj, null);
-                        if (o != null)
-                        {
-                            AddValidation(o as Lin.Core.ViewModel.ViewModel, errorTmp, name + py.Name + ".");
-                        }
+                        //pyType = py.DeclaringType;
+                        //if (pyType == typeof(Lin.Core.ViewModel.ViewModel) || pyType == typeof(Lin.Core.ViewModel.ViewModelBase) || pyType == typeof(Lin.Core.ViewModel.ViewModelProperty))
+                        //{
+                        //    continue;
+                        //}
+                        //object o = py.GetValue(obj, null);
+                        //if (o != null)
+                        //{
+                        //    AddValidation(o as Lin.Core.ViewModel.ViewModel, errorTmp, name + py.Name + ".");
+                        //}
                     }
                     catch (Exception) { }
                 }
@@ -86,7 +86,7 @@ namespace Lin.Core.DataValidation
             IDictionary<string, object> param = package.GetParams();
             foreach (KeyValuePair<string,object> vp in param)
             {
-                AddValidation(vp.Value as Lin.Core.ViewModel.ViewModel, error, vp.Key + ".");
+                AddValidation(vp.Value as Lin.Core.ViewModel, error, vp.Key + ".");
             }
         }
     }

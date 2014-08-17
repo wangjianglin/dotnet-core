@@ -15,7 +15,7 @@ namespace Lin.Core.Controls
             ///初始化的时候设置取消和关闭命令
             this.IsVisibleChanged += (object sender, DependencyPropertyChangedEventArgs e) =>
             {
-                Lin.Core.ViewModel.ViewModel view = vm as Lin.Core.ViewModel.ViewModel;
+                Lin.Core.ViewModel view = vm as Lin.Core.ViewModel;
                 if(view!=null)
                 {
                     //view.Property["Closed"] = false;

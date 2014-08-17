@@ -10,7 +10,7 @@ namespace Lin.Core.Markup
 {
     public  class AndConvert : MarkupExtension
     {
-        private  class binding : Lin.Core.ViewModel.ViewModel
+        private  class binding : Lin.Core.ViewModel
         {
         } 
         private dynamic vm = new binding();

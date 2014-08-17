@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows;
-using Lin.Core.ViewModel;
 using Lin.Core.AddIn;
 
 #region Namespce mapping

@@ -21,7 +21,7 @@ namespace Lin.Core.Controls.NotifierControls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ErrorControl), new FrameworkPropertyMetadata(typeof(ErrorControl)));
         }
 
-        private Lin.Core.ViewModel.ViewModel vm = new Lin.Core.ViewModel.ViewModel();
+        private Lin.Core.ViewModel vm = new Lin.Core.ViewModel();
         public readonly static DependencyProperty ErrorCodeProperty = DependencyProperty.Register("ErrorCode", typeof(string), typeof(ErrorControl), new PropertyMetadata(null, (DependencyObject sender, DependencyPropertyChangedEventArgs e) =>
         {
             //((ErrorControl)sender).vm.Property["ErrorCode"] = e.NewValue;

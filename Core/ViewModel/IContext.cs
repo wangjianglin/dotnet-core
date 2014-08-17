@@ -7,7 +7,7 @@ using System.Text;
 using Lin.Core.Cache;
 using Lin.Core.Log;
 
-namespace Lin.Core.ViewModel
+namespace Lin.Core.ViewModel2
 {
     public interface IContext:INotifyPropertyChanged
     {
