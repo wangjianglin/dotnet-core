@@ -1140,7 +1140,7 @@ namespace Lin.Core.Cache
                 {
                     if (thread == null)
                     {
-                        thread = Lin.Core.Utils.Thread.BackThread(obj =>
+                        thread = Lin.Core.Thread.BackThread(obj =>
                         {
                             while (true)
                             {

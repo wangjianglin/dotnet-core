@@ -47,7 +47,7 @@ namespace Lin.Core.Web.Http
             bool isRun = true;
             bool isStop = false;
             bool isError = false;//表示上传是否有错误，true表示有错误，false表示测试错误
-            Thread thread = new Thread(new ParameterizedThreadStart(obj =>
+            System.Threading.Thread thread = new System.Threading.Thread(new ParameterizedThreadStart(obj =>
             {
                 long preP = 0;
                 long cp = 0;
@@ -74,7 +74,7 @@ namespace Lin.Core.Web.Http
                             }
                         }
                         catch (Exception) { }
-                        Thread.Sleep(50);
+                        System.Threading.Thread.Sleep(50);
                     }
                     try
                     {
@@ -101,14 +101,14 @@ namespace Lin.Core.Web.Http
                     {
                         isError = true;
                         isRun = false;
-                        while (!isStop) { Thread.Sleep(1); }
+                        while (!isStop) { System.Threading.Thread.Sleep(1); }
                         if (fault != null)
                         {
                             fault(error);
                         }
                         return;
                     }
-                    Thread.Sleep(1000);
+                    System.Threading.Thread.Sleep(1000);
                 }
                 retryCount = 0;
                 start = start + step;
@@ -123,7 +123,7 @@ namespace Lin.Core.Web.Http
             //uploadProgressAction(total, total);
             
             isRun = false;
-            while (!isStop) { Thread.Sleep(1); }
+            while (!isStop) { System.Threading.Thread.Sleep(1); }
             if (result != null)
             {
                 result(this.resultObj);

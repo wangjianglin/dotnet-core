@@ -46,7 +46,7 @@ namespace Lin.Core.Controls
 
         private static void Show2(object content, LogLevel level = LogLevel.INFO, string title = null)
         {
-            Lin.Core.Utils.Thread.UIThread(o =>
+            Lin.Core.Thread.UIThread(o =>
             {
                 ShowImpl(content, level, title);
             }, null);
@@ -60,7 +60,7 @@ namespace Lin.Core.Controls
         /// <param name="title">标题</param>
         public static void Show(object content, LogLevel level = LogLevel.INFO, string title = null)
         {
-            Lin.Core.Utils.Thread.BackThread(obj =>
+            Lin.Core.Thread.BackThread(obj =>
             {
                 ShowBackThread(content, level, title);
             });
@@ -70,7 +70,7 @@ namespace Lin.Core.Controls
         {
             System.Threading.AutoResetEvent auto = new System.Threading.AutoResetEvent(false);
             bool isAccord = true;
-            Lin.Core.Utils.Thread.UIThread(obj => 
+            Lin.Core.Thread.UIThread(obj => 
             {
                 if (System.Windows.Application.Current.MainWindow == null)
                 {
@@ -148,14 +148,14 @@ namespace Lin.Core.Controls
                 }
                 if (error.code == 0x2000001 || error.code == 0x2000003) // 与服务器断开连接
                 {
-                    Lin.Core.Utils.Thread.UIThread(o =>
+                    Lin.Core.Thread.UIThread(o =>
                    {
                        ShowContext(new NetWorkExceptionControl(), title);
                    });
                 }
                 else if (error.code / 0x10000 == -200)//非网络问题，并且是前台的
                 {
-                    Lin.Core.Utils.Thread.UIThread(o =>
+                    Lin.Core.Thread.UIThread(o =>
                    {
                        AdExceptionControl errorEx = new AdExceptionControl();
                        errorEx.AdExceptionCode = string.Format("0x{0:X}_{1:X4}", global::System.Math.Abs((long)(error.code / 65536)), global::System.Math.Abs(error.code) % 65536);
@@ -165,7 +165,7 @@ namespace Lin.Core.Controls
                 }
                 else //非网络问题，并且是后台的
                 {
-                Lin.Core.Utils.Thread.UIThread(o =>
+                Lin.Core.Thread.UIThread(o =>
                 {
                     ErrorControl errorEx = new ErrorControl();
                     errorEx.ErrorCode = string.Format("0x{0:X}_{1:X4}", global::System.Math.Abs((long)(error.code / 65536)), global::System.Math.Abs(error.code) % 65536);
@@ -199,7 +199,7 @@ namespace Lin.Core.Controls
                 {
                     return;
                 }
-                Lin.Core.Utils.Thread.UIThread(o =>
+                Lin.Core.Thread.UIThread(o =>
                 {
                     AdExceptionControl adControl = new AdExceptionControl();
                     string errorCode = string.Format("0x{0:X}_{1:X4}", global::System.Math.Abs((long)(ad.Code / 65536)), global::System.Math.Abs(ad.Code) % 65536);
@@ -234,7 +234,7 @@ namespace Lin.Core.Controls
                 {
                     return;
                 }
-                Lin.Core.Utils.Thread.UIThread(o =>
+                Lin.Core.Thread.UIThread(o =>
                 {
                     ShowContext(new SystemExceptionControl(), title);
                 });
@@ -256,7 +256,7 @@ namespace Lin.Core.Controls
             }
             if (contents != null && contents.Count > 0)
             {
-                Lin.Core.Utils.Thread.UIThread(o =>
+                Lin.Core.Thread.UIThread(o =>
                 {
                     ErrorContentsControl contentsControl = new ErrorContentsControl();
                     IList<string> list = new List<string>();

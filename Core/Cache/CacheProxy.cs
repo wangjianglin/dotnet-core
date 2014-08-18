@@ -304,13 +304,13 @@ namespace Lin.Core.Cache
         public void MoveFolderTo(DirectoryInfo directorySource, DirectoryInfo directoryTarget)
         {
             AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
-            appDomain.SetData(Thread.CurrentThread.ManagedThreadId + directorySourceKey, directorySource);
-            appDomain.SetData(Thread.CurrentThread.ManagedThreadId + directoryTargetKey, directoryTarget);
-            Thread.Sleep(1000);
+            appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + directorySourceKey, directorySource);
+            appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + directoryTargetKey, directoryTarget);
+            //System.Threading.Thread.Sleep(1000);
             appDomain.DoCallBack(() =>
             {
-                object obj = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + directorySourceKey);
-                object obj1 = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + directoryTargetKey);
+                object obj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + directorySourceKey);
+                object obj1 = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + directoryTargetKey);
                 if (obj != null && obj1 != null)
                 {
                     DirectoryInfo directorySource1 = obj as DirectoryInfo;

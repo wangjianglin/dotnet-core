@@ -22,7 +22,7 @@ namespace Lin.Core.Commands
         /// <param name="Element"></param>
         public static void Execute(string CommandName, object Param, IInputElement Element)
         {
-            Lin.Core.Utils.Thread.UIThread(obj =>
+            Lin.Core.Thread.UIThread(obj =>
             {
                 RoutedCommands.Commands[CommandName].Execute(Param, Element);
             }, null);

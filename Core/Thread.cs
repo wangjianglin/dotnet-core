@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Threading;
 
-namespace Lin.Core.Utils
+namespace Lin.Core
 {
     public class Thread
     {

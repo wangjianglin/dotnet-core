@@ -25,7 +25,7 @@ namespace Lin.Core.Controls
     {
         public static void Show(object content, LogLevel level = LogLevel.INFO, string title = null)
         {
-            Lin.Core.Utils.Thread.UIThread(o =>
+            Lin.Core.Thread.UIThread(o =>
             {
                 ShowImpl(content, level, title);
             }, null);

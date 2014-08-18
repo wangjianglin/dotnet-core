@@ -40,10 +40,10 @@ namespace Lin.Core.ViewModel2
         internal ContextProxy()
         {
             AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
-            appdomain.SetData(Thread.CurrentThread.ManagedThreadId + listenerKey, new ListenerEvent(this));
+            appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + listenerKey, new ListenerEvent(this));
             appdomain.DoCallBack(() =>
             {
-                ListenerEvent listener = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + listenerKey) as ListenerEvent;
+                ListenerEvent listener = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + listenerKey) as ListenerEvent;
                 Context.GlobalImpl.AddListener(listener);
             });
             appdomain.SetData(listenerKey, null);
@@ -75,11 +75,11 @@ namespace Lin.Core.ViewModel2
                     AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
                     appdomain.DoCallBack(() =>
                     {
-                        AppDomain.CurrentDomain.SetData(Thread.CurrentThread.ManagedThreadId + logLevelKey, Context.GlobalImpl.LogLevel);
-                        AppDomain.CurrentDomain.SetData(Thread.CurrentThread.ManagedThreadId + "", "--");
+                        AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + logLevelKey, Context.GlobalImpl.LogLevel);
+                        AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + "", "--");
                     });
 
-                    return (Log.LogLevel)appdomain.GetData(Thread.CurrentThread.ManagedThreadId + logLevelKey);
+                    return (Log.LogLevel)appdomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + logLevelKey);
                 }
             }
         }
@@ -101,9 +101,9 @@ namespace Lin.Core.ViewModel2
                     AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
                     appdomain.DoCallBack(() =>
                     {
-                        AppDomain.CurrentDomain.SetData(Thread.CurrentThread.ManagedThreadId + isNetKey, Context.GlobalImpl.IsNet);
+                        AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + isNetKey, Context.GlobalImpl.IsNet);
                     });
-                    return (bool)appdomain.GetData(Thread.CurrentThread.ManagedThreadId + isNetKey);
+                    return (bool)appdomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + isNetKey);
                 }
             }
             set
@@ -115,12 +115,12 @@ namespace Lin.Core.ViewModel2
                 else
                 {
                     AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + isNetKey, value);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + isNetKey, value);
                     appdomain.DoCallBack(() =>
                     {
-                        Context.GlobalImpl.IsNet = (bool)AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + isNetKey);
+                        Context.GlobalImpl.IsNet = (bool)AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + isNetKey);
                     });
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + isNetKey, null);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + isNetKey, null);
                 }
             }
         }
@@ -144,15 +144,15 @@ namespace Lin.Core.ViewModel2
                 else
                 {
                     AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + sKey, s);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sKey, s);
                     appdomain.DoCallBack(() =>
                     {
-                        string obj = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + sKey).ToString();
+                        string obj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sKey).ToString();
                         //AppDomain.CurrentDomain.SetData(Thread.CurrentThread.ManagedThreadId + propertyKey, Context.GlobalImpl[obj]);
                     });
-                    if (appdomain.GetData(Thread.CurrentThread.ManagedThreadId + propertyKey) != null)
+                    if (appdomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyKey) != null)
                     {
-                        return appdomain.GetData(Thread.CurrentThread.ManagedThreadId + propertyKey);
+                        return appdomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyKey);
                     }
                 }
                 return null;
@@ -166,21 +166,21 @@ namespace Lin.Core.ViewModel2
                 else
                 {
                     AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + sKey, s);
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + valueKey, value);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sKey, s);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey, value);
                     appdomain.DoCallBack(() =>
                     {
                         string objStr = "";
-                        object sKeyObj = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + sKey);
+                        object sKeyObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sKey);
                         if (sKeyObj != null)
                         {
                             objStr = sKeyObj.ToString();
                         }
-                        object valueObj = AppDomain.CurrentDomain.GetData(Thread.CurrentThread.ManagedThreadId + valueKey);
+                        object valueObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey);
                        // Context.GlobalImpl[objStr] = valueObj;
                     });
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + sKey, null);
-                    appdomain.SetData(Thread.CurrentThread.ManagedThreadId + valueKey, null);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sKey, null);
+                    appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey, null);
                 }
             }
         }
