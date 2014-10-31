@@ -1,5 +1,6 @@
 ﻿using Lin.Plugin.AddIn;
 using Lin.Plugin.MenuStructure;
+using Lin.Util.Assemblys;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -82,7 +83,7 @@ namespace Lin.Plugin
 
 
         private AddInStore addinstore = null;
-        private AttributeStore attributeStore = null;
+        private AssemblyStore attributeStore = null;
         private ComponentStore componentStore = null;
         /// <summary>
         /// 构造函数
@@ -98,8 +99,8 @@ namespace Lin.Plugin
             this.Version = version;
             this.DefaultLoad = loaded;
             appDomainToPlugin.Add(plugindir.FullName, this);
-            attributeStore = new AttributeStore();
-            attributeStore.Update(plugindir, plugindir);
+            attributeStore = new AssemblyStore();
+            attributeStore.Update(plugindir);
             addinstore = new AddInStore(attributeStore);
         }
 
@@ -218,14 +219,14 @@ namespace Lin.Plugin
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public List<AttributeToken> GetAddIns(Type type)
-        {
-            //Lin.Plugin.AddIn.AttributeStore store = new AttributeStore();
-            //store.Update(this.PluginDir);
-            //store.Update(new DirectoryInfo(@"D:\ECM\ECMTest\bin\Debug\lib\1.0"));
-            List<AttributeToken> attribute = this.attributeStore.FindAttributes(type);
-            return attribute;
-        }
+        //public List<AttributeToken> GetAddIns(Type type)
+        //{
+        //    //Lin.Plugin.AddIn.AttributeStore store = new AttributeStore();
+        //    //store.Update(this.PluginDir);
+        //    //store.Update(new DirectoryInfo(@"D:\ECM\ECMTest\bin\Debug\lib\1.0"));
+        //    List<AttributeToken> attribute = this.attributeStore.FindAttributes(type);
+        //    return attribute;
+        //}
 
         /// <summary>
         /// 根据插件标识的类型，以及表示了插件类的类类型来获取插件

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lin.Util.Assemblys;
+using System;
 using System.AddIn.Contract;
 using System.AddIn.Pipeline;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Windows;
 namespace Lin.Plugin.AddIn
 {
     [Serializable]
-    public class AddInToken:AttributeToken
+    public class AddInToken:AttributeToken<AddIn>
     {
         private static string preKey = null;
         static string GetKey()

@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 using Lin.Core.Utils;
+using Lin.Util.Extensions;
 
 namespace Lin.Core.AddIn
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using Lin.Core.Web.Json;
+using Lin.Util.Json;
 using System.Dynamic;
 using System.Windows;
 using System.Reflection;
@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using Lin.Util;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
+using Lin.Util.Json;
 
 namespace Lin.Core
 {

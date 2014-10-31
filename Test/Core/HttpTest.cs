@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading;
-using Lin.Core.Web.Packages;
-using Lin.Core.Web.Http;
 using System.IO;
 using System.Globalization;
+using Lin.Comm.Http.Packages;
+using Lin.Comm.Http;
 
 
 namespace AD.Test.Core
@@ -74,7 +74,7 @@ namespace AD.Test.Core
                 //{
                 //    global::System.Console.WriteLine("finally.");
                 //}
-                Lin.Core.Utils.ActionExecute.Execute(() =>
+                Lin.Util.ActionExecute.Execute(() =>
                 {
                     global::System.Console.WriteLine("action1.");
                     throw new Exception();
@@ -117,11 +117,12 @@ namespace AD.Test.Core
             //Action(Action);
             //Action(Action);
             //Action(Action);
-            Action();
-            System.GC.Collect();
-            System.GC.Collect();
-            System.GC.Collect();
-            Lin.Core.Web.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/web/__http_comm_protocol__");
+            //Action();
+            //System.GC.Collect();
+            //System.GC.Collect();
+            //System.GC.Collect();
+            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/web/__http_comm_protocol__");
+            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/");
             HttpCommunicate.HttpRequest += (HttpCommunicateType type, object content) =>
             {
                 Console.WriteLine("-------------2");

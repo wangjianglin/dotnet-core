@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using Lin.Core.Web.Http;
 using Lin.Util;
+using Lin.Comm.Http;
 
 namespace Lin.Core.Utils
 {

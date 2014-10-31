@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Lin.Util
 {
+
     /// <summary>
     /// 
     /// </summary>
@@ -51,5 +52,40 @@ namespace Lin.Util
         public K[] Keys { get { return keys(); } }
 
         public V[] Values { get { return values(); } }
+    }
+
+    public class MapIndexProperty<K, V>
+    {
+        private IDictionary<K, V> map = new Dictionary<K, V>();
+
+        public V this[K name]
+        {
+            get
+            {
+                if (map.ContainsKey(name))
+                {
+                    return map[name];
+                }
+                return default(V);
+            }
+            set
+            {
+                if (map.ContainsKey(name))
+                {
+                    if (value == null)
+                    {
+                        map.Remove(name);
+                    }
+                    else
+                    {
+                        map[name] = value;
+                    }
+                }
+                else if (value != null)
+                {
+                    map.Add(name, value);
+                }
+            }
+        }
     }
 }

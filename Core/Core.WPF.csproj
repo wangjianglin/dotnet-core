@@ -159,13 +159,12 @@
     <Compile Include="Controls\TaskbarNotifierContent.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="PropertyChanged.cs" />
-    <Compile Include="Utils\ActionExecute.cs" />
+    <Compile Include="Thread.cs" />
     <Compile Include="Utils\ClearMemory.cs" />
     <Compile Include="Utils\KeyBoard.cs" />
     <Compile Include="Utils\ExceptionInfoToString.cs" />
     <Compile Include="Utils\PingPhysicalAddress.cs" />
     <Compile Include="Utils\Version.cs" />
-    <Compile Include="Utils\WeakReferenceCollection.cs" />
     <Compile Include="Utils\WindowAutoRun.cs" />
     <Compile Include="Converter\BoolNotConverter.cs" />
     <Compile Include="Converter\BoolNotToVisibilityConverter.cs" />
@@ -188,61 +187,11 @@
     <Compile Include="NameValueModel.cs" />
     <Compile Include="Utils\Axis.cs" />
     <Compile Include="Utils\ParamsToDictionary.cs" />
-    <Compile Include="Utils\Utils.cs" />
-    <Compile Include="Utils\Extensions.cs" />
-    <Compile Include="Thread.cs" />
     <Compile Include="Utils\WaveFile.cs" />
     <Compile Include="ViewModel\Context.cs" />
     <Compile Include="ViewModel\ContextProxy.cs" />
     <Compile Include="ViewModel\IContext.cs" />
     <Compile Include="ViewModel.cs" />
-    <Compile Include="Web\Http\Error.cs" />
-    <Compile Include="Web\Http\File.cs" />
-    <Compile Include="Web\Http\FileCopyPackage.cs" />
-    <Compile Include="Web\Http\FileDeletePackage.cs" />
-    <Compile Include="Web\Http\FileDownloadPackage.cs" />
-    <Compile Include="Web\Http\FileUploadPackage.cs" />
-    <Compile Include="Web\Http\Helpers.cs" />
-    <Compile Include="Web\Http\HttpCommunicate.cs" />
-    <Compile Include="Web\Http\HttpDownload.cs" />
-    <Compile Include="Web\Http\HttpEncoder.cs" />
-    <Compile Include="Web\Http\HttpPartDownload.cs" />
-    <Compile Include="Web\Http\HttpPartUpload.cs" />
-    <Compile Include="Web\Http\HttpRequest.cs" />
-    <Compile Include="Web\Http\HttpUpload.cs" />
-    <Compile Include="Web\Http\HttpUtility.cs" />
-    <Compile Include="Web\Http\JsonHttpRequestHander.cs" />
-    <Compile Include="Web\Http\NoneHttpRequestHander.cs" />
-    <Compile Include="Web\Http\ParamsHander.cs" />
-    <Compile Include="Web\Http\ResourceHttpRequestHandle.cs" />
-    <Compile Include="Web\Http\ValidationErrorData.cs" />
-    <Compile Include="Web\Json\JsonFormat.cs" />
-    <Compile Include="Web\Json\JsonSerializer.cs" />
-    <Compile Include="Web\Json\DataContractJsonSerializer.cs" />
-    <Compile Include="Web\Json\DiagnosticUtility.cs" />
-    <Compile Include="Web\Json\IValueSerializer.cs" />
-    <Compile Include="Web\Json\JavaScriptDeserializer.cs" />
-    <Compile Include="Web\Json\JavaScriptObjectDeserializer.cs" />
-    <Compile Include="Web\Json\JavaScriptSerializer.cs" />
-    <Compile Include="Web\Json\JavaScriptString.cs" />
-    <Compile Include="Web\Json\JsonArray.cs" />
-    <Compile Include="Web\Json\JsonObject.cs" />
-    <Compile Include="Web\Json\JsonPrimitive.cs" />
-    <Compile Include="Web\Json\JsonReader.cs" />
-    <Compile Include="Web\Json\JsonSkip.cs" />
-    <Compile Include="Web\Json\JsonType.cs" />
-    <Compile Include="Web\Json\JsonUtil.cs" />
-    <Compile Include="Web\Json\JsonValue.cs" />
-    <Compile Include="Web\Json\SR.cs" />
-    <Compile Include="Web\Json\SRCategoryAttribute.cs" />
-    <Compile Include="Web\Json\SRDescriptionAttribute.cs" />
-    <Compile Include="Web\Model\Version.cs" />
-    <Compile Include="Web\Packages\Package.cs" />
-    <Compile Include="Web\Packages\PackageUtils.cs" />
-    <Compile Include="Web\Packages\ResourcePackage.cs" />
-    <Compile Include="Web\Packages\TestPackage.cs" />
-    <Compile Include="Web\Packages\Version.cs" />
-    <Compile Include="Web\Packages\VersionPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -337,6 +286,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Comm\Comm.csproj">
+      <Project>{593c6704-7d65-4283-8204-4679a7c5b94e}</Project>
+      <Name>Comm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Plugin\Plugin.csproj">
       <Project>{5da527f1-87ac-424e-98dd-687c8c6dd33b}</Project>
       <Name>Plugin</Name>

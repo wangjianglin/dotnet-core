@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 using System.ComponentModel;
-using Lin.Core.Web.Http;
-using Lin.Core.Web.Packages;
+using Lin.Comm.Http;
+using Lin.Comm.Http.Packages;
 
 namespace Lin.Core.DataValidation
 {
@@ -81,7 +81,7 @@ namespace Lin.Core.DataValidation
                         };
             } 
         }
-        public static void AddValidation(Package package, Lin.Core.Web.Http.ValidationErrorData error)
+        public static void AddValidation(Package package, Lin.Comm.Http.ValidationErrorData error)
         {
             IDictionary<string, object> param = package.GetParams();
             foreach (KeyValuePair<string,object> vp in param)

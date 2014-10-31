@@ -3,9 +3,9 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Lin.Core.Web.Http;
 using System.IO;
 using System.Threading;
+using Lin.Comm.Http;
 
 namespace AD.Test.Core
 {
@@ -114,7 +114,7 @@ namespace AD.Test.Core
         [TestMethod]
         public void TestUrlDownload()
         {
-            Lin.Core.Web.Http.HttpCommunicate.Download(new Uri("http://192.168.1.18:8080/download/ecm/dotnet/update.zip"),
+            Lin.Comm.Http.HttpCommunicate.Download(new Uri("http://192.168.1.18:8080/download/ecm/dotnet/update.zip"),
                 (file, warnning) =>
                 {
                     Console.WriteLine("ok!");

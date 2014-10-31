@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lin.Util.Assemblys;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,15 +10,15 @@ namespace Lin.Plugin.AddIn
 {
     public class AddInStore
     {
-        private AttributeStore attributeStore;
+        private AssemblyStore attributeStore;
 
         public AddInStore(DirectoryInfo path,DirectoryInfo loadPath)
         {
-            attributeStore = new AttributeStore();
-            attributeStore.Update(path, loadPath);
+            attributeStore = new AssemblyStore();
+            attributeStore.Update(path);
         }
 
-        public AddInStore(AttributeStore attributeStore)
+        public AddInStore(AssemblyStore attributeStore)
         {
             this.attributeStore = attributeStore;
         }
@@ -28,21 +29,21 @@ namespace Lin.Plugin.AddIn
         /// <returns></returns>
         public IList<AddInToken> FindAddIns()
         {
-            List<AttributeToken> addIns = attributeStore.FindAttributes(typeof(AddIn));
-            Attribute attributes;
+            IList<AttributeToken<AddIn>> addIns = attributeStore.FindAttributes<AddIn>();
+            //AddIn attributes;
             List<AddInToken> tokens = new List<AddInToken>();
-            foreach (AttributeToken type in addIns)
-            {
-                attributes = type.Attributes;
-                AddIn addin = (AddIn)attributes;
-                if (addin != null)
-                {
-                    AddInToken token = new AddInToken(type.AttributeType);
-                    CopyProperty(addin, token);
-                    tokens.Add(token);
-                }
-            }
-            tokens.Sort(new SortClass());
+            //foreach (AttributeToken<AddIn> type in addIns)
+            //{
+            //    attributes = type.Attribute;
+            //    AddIn addin = (AddIn)attributes;
+            //    if (addin != null)
+            //    {
+            //        AddInToken token = new AddInToken(type.AttributeType);
+            //        CopyProperty(addin, token);
+            //        tokens.Add(token);
+            //    }
+            //}
+            //tokens.Sort(new SortClass());
             return tokens;
         }
 

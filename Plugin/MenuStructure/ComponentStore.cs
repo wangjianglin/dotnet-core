@@ -1,5 +1,6 @@
 ﻿using Lin.Plugin.AddIn;
 using Lin.Plugin.ComponentAttribute;
+using Lin.Util.Assemblys;
 using Plugin.View;
 using System;
 using System.Collections.Generic;
@@ -15,15 +16,15 @@ namespace Lin.Plugin.MenuStructure
     /// </summary>
     internal class ComponentStore
     {
-        private AttributeStore attributeStore;
+        private AssemblyStore attributeStore;
 
         internal ComponentStore(DirectoryInfo path, DirectoryInfo loadPath)
         {
-            attributeStore = new AttributeStore();
-            attributeStore.Update(path, loadPath);
+            attributeStore = new AssemblyStore();
+            attributeStore.Update(path);
         }
 
-        internal ComponentStore(AttributeStore attributeStore)
+        internal ComponentStore(AssemblyStore attributeStore)
         {
             this.attributeStore = attributeStore;
         }
@@ -35,18 +36,18 @@ namespace Lin.Plugin.MenuStructure
         internal List<ComponentStructure> FindComponent()
         {
             List<ComponentStructure> componentStructrues = new List<ComponentStructure>();
-            List<AttributeToken> components = attributeStore.FindAttributes(typeof(Component));
-            ComponentStructure componentStructure = null;
-            foreach (AttributeToken type in components)
-            {
-                Component component = (Component)type.Attributes;
-                if (component != null)
-                {
-                    componentStructure = new ComponentStructure(type.AttributeType);
-                    CopyProperty(component, componentStructure);
-                    componentStructrues.Add(componentStructure);
-                }
-            }
+            //List<AttributeToken> components = attributeStore.FindAttributes(typeof(Component));
+            //ComponentStructure componentStructure = null;
+            //foreach (AttributeToken type in components)
+            //{
+            //    Component component = (Component)type.Attributes;
+            //    if (component != null)
+            //    {
+            //        componentStructure = new ComponentStructure(type.AttributeType);
+            //        CopyProperty(component, componentStructure);
+            //        componentStructrues.Add(componentStructure);
+            //    }
+            //}
             return componentStructrues;
         }
 
@@ -56,20 +57,21 @@ namespace Lin.Plugin.MenuStructure
         /// <returns></returns>
         internal List<ViewToken> FindView()
         {
-            List<AttributeToken> views = attributeStore.FindAttributes(typeof(ViewAttribute));
-            ViewToken token = null;
-            List<ViewToken> tokens = new List<ViewToken>();
-            foreach (AttributeToken type in views)
-            {
-                ViewAttribute view = (ViewAttribute)type.Attributes;
-                if (view != null)
-                {
-                    token = new ViewToken(type.AttributeType);
-                    CopyProperty(view, token);
-                    tokens.Add(token);
-                }
-            }
-            return tokens;
+            //List<AttributeToken> views = attributeStore.FindAttributes(typeof(ViewAttribute));
+            //ViewToken token = null;
+            //List<ViewToken> tokens = new List<ViewToken>();
+            //foreach (AttributeToken type in views)
+            //{
+            //    ViewAttribute view = (ViewAttribute)type.Attributes;
+            //    if (view != null)
+            //    {
+            //        token = new ViewToken(type.AttributeType);
+            //        CopyProperty(view, token);
+            //        tokens.Add(token);
+            //    }
+            //}
+            //return tokens;
+            return null;
         }
 
 

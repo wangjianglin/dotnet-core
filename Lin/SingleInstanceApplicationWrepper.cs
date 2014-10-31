@@ -131,17 +131,17 @@ namespace AD.ECM
             //处理  eventArgs.CommandLine
             CommandLineArguments.ProcessArgs(eventArgs.CommandLine.ToArray(), AccessOpportunity.OnStartupNextInstance);
 
-            IList<string> Slients = CommandLineArguments.NextArgs["Slient"] as IList<string>;
+            //IList<string> Slients = CommandLineArguments.NextArgs["Slient"] as IList<string>;
 
-            Exceute.Exceute(Lin.Plugin.ApplicationLife.ApplicationLifecyclePhase.ENTER_STARTUP_NEXT_INSTANCE);
-            base.OnStartupNextInstance(eventArgs);
-            Exceute.Exceute(Lin.Plugin.ApplicationLife.ApplicationLifecyclePhase.LEAVE_STARTUP_NEXT_INSTANCE);
+            //Exceute.Exceute(Lin.Plugin.ApplicationLife.ApplicationLifecyclePhase.ENTER_STARTUP_NEXT_INSTANCE);
+            //base.OnStartupNextInstance(eventArgs);
+            //Exceute.Exceute(Lin.Plugin.ApplicationLife.ApplicationLifecyclePhase.LEAVE_STARTUP_NEXT_INSTANCE);
 
-            //发布
-            CommandLineArguments.Fire(AccessOpportunity.OnStartupNextInstance);
+            ////发布
+            //CommandLineArguments.Fire(AccessOpportunity.OnStartupNextInstance);
              
-            //清除参数
-            CommandLineArguments.ClearNextCommandArgs();
+            ////清除参数
+            //CommandLineArguments.ClearNextCommandArgs();
 
             //if (app != null && app.MainWindow.IsActive == true)
             //{
@@ -160,92 +160,92 @@ namespace AD.ECM
         [STAThread]
         public static void Main(string[] args)
         {
-            Environment.CurrentDirectory = global::System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            //Environment.CurrentDirectory = global::System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
 
-            //正常启动程序
-            appPlugins = new Lin.Plugin.Plugins(new global::System.IO.DirectoryInfo(global::System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "\\Plugins"));
+            ////正常启动程序
+            //appPlugins = new Lin.Plugin.Plugins(new global::System.IO.DirectoryInfo(global::System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase + "\\Plugins"));
 
-            try
-            {
-                Plugin.AddIn.AddInToken apps = FindExcuteAddin();
-                Exceute = apps.Content as IExceute;
-            }
-            catch
-            {
-                MessageBox.Show("应用程序启动失败！");
-            }
-            Exceute.Exceute(Lin.Plugin.ApplicationLife.ApplicationLifecyclePhase.ENTER_MAIN);
+            //try
+            //{
+            //    Plugin.AddIn.AddInToken apps = FindExcuteAddin();
+            //    Exceute = apps.Content as IExceute;
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("应用程序启动失败！");
+            //}
+            //Exceute.Exceute(Lin.Plugin.ApplicationLife.ApplicationLifecyclePhase.ENTER_MAIN);
 
             
-            Environment.CurrentDirectory = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;           
-            SingleInstanceApplicationWrepper wrapper = new SingleInstanceApplicationWrepper();
-            wrapper.Run(args);
+            //Environment.CurrentDirectory = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;           
+            //SingleInstanceApplicationWrepper wrapper = new SingleInstanceApplicationWrepper();
+            //wrapper.Run(args);
         }
 
         /// <summary>
         /// 根据命令行参数查找对应版本的执行器
         /// </summary>
         /// <returns></returns>
-        private static Plugin.AddIn.AddInToken FindExcuteAddin()
-        {
-            Plugin.AddIn.AddInToken apps = null;
+        //private static Lin.Plugin.AddIn.AddInToken FindExcuteAddin()
+        //{
+        //    Lin.Plugin.AddIn.AddInToken apps = null;
 
-            IList<string> appsVersions = CommandLineArguments.Args["App"] as IList<string>;
-            IList<Lin.Plugin.AddIn.AddInToken> addins = null;
-            if (appsVersions != null)
-            {
-                addins = appPlugins.GetAddIns("App Core", typeof(Lin.Plugin.IExceute));
-                IList<string> appEnforces = CommandLineArguments.Args["AppEnforce"] as IList<string>;
-                if (appEnforces != null)
-                {
-                    string appEnforce = appEnforces[0];
-                    uint major = (uint)int.Parse(appEnforce.Split('.')[0]);
-                    uint minor = (uint)int.Parse(appEnforce.Split('.')[1]);
-                    foreach (Lin.Plugin.AddIn.AddInToken item in addins)
-                    {
-                        if (item.Major == major && item.Minor == minor)
-                        {
-                            apps = item;
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    string appsVersion = appsVersions[0];
-                    uint major = (uint)int.Parse(appsVersion.Split('.')[0]);
-                    uint minor = (uint)int.Parse(appsVersion.Split('.')[1]);
-                    uint preMajor = uint.MaxValue;
-                    uint preMinor = uint.MaxValue;
-                    foreach (Lin.Plugin.AddIn.AddInToken item in addins)
-                    {
-                        if (item.Major == major && item.Minor == minor)
-                        {
-                            apps = item;
-                            break;
-                        }
-                    }
-                    if (apps == null)
-                    {
-                        foreach (Lin.Plugin.AddIn.AddInToken item in addins)
-                        {
-                            if ((item.Major > major || item.Major == major && item.Minor >= minor)
-                                &&
-                                (item.Major < preMajor || item.Major == major && item.Minor < preMinor))
-                            {
-                                apps = item;
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                apps = appPlugins.GetLastAddIn("App Core", typeof(Lin.Plugin.IExceute));
-            }
+        //    IList<string> appsVersions = CommandLineArguments.Args["App"] as IList<string>;
+        //    IList<Lin.Plugin.AddIn.AddInToken> addins = null;
+        //    if (appsVersions != null)
+        //    {
+        //        addins = appPlugins.GetAddIns("App Core", typeof(Lin.Plugin.IExceute));
+        //        IList<string> appEnforces = CommandLineArguments.Args["AppEnforce"] as IList<string>;
+        //        if (appEnforces != null)
+        //        {
+        //            string appEnforce = appEnforces[0];
+        //            uint major = (uint)int.Parse(appEnforce.Split('.')[0]);
+        //            uint minor = (uint)int.Parse(appEnforce.Split('.')[1]);
+        //            foreach (Lin.Plugin.AddIn.AddInToken item in addins)
+        //            {
+        //                if (item.Major == major && item.Minor == minor)
+        //                {
+        //                    apps = item;
+        //                    break;
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            string appsVersion = appsVersions[0];
+        //            uint major = (uint)int.Parse(appsVersion.Split('.')[0]);
+        //            uint minor = (uint)int.Parse(appsVersion.Split('.')[1]);
+        //            uint preMajor = uint.MaxValue;
+        //            uint preMinor = uint.MaxValue;
+        //            foreach (Lin.Plugin.AddIn.AddInToken item in addins)
+        //            {
+        //                if (item.Major == major && item.Minor == minor)
+        //                {
+        //                    apps = item;
+        //                    break;
+        //                }
+        //            }
+        //            if (apps == null)
+        //            {
+        //                foreach (Lin.Plugin.AddIn.AddInToken item in addins)
+        //                {
+        //                    if ((item.Major > major || item.Major == major && item.Minor >= minor)
+        //                        &&
+        //                        (item.Major < preMajor || item.Major == major && item.Minor < preMinor))
+        //                    {
+        //                        apps = item;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        apps = appPlugins.GetLastAddIn("App Core", typeof(Lin.Plugin.IExceute));
+        //    }
 
-            return apps;
-        }
+        //    return apps;
+        //}
 
         /// <summary>
         /// 处理来自注册表的命令行参数

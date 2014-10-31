@@ -46,33 +46,33 @@ namespace AD.Test.Core
         object obj = new object();
         static void test1()
         {
-            try
-            {
-                for (int n = 0; n < 1000; n++)
-                {
-                    Thread.Sleep(100);
-                    Logger.Logs["testLoggerProxy"].Info("测试线程同步问题1" + n);
-                }
-            }
-            finally
-            {
-                myResetEvent1.Set();
-            }
+            //try
+            //{
+            //    for (int n = 0; n < 1000; n++)
+            //    {
+            //        Thread.Sleep(100);
+            //        Logger.Logs["testLoggerProxy"].Info("测试线程同步问题1" + n);
+            //    }
+            //}
+            //finally
+            //{
+            //    myResetEvent1.Set();
+            //}
         }
 
         static void test2()
         {
-            try
-            {
-                for (int n = 0; n < 1000; n++)
-                {
-                    Logger.Logs["testLoggerProxy"].Info("测试线程同步问题" + n);
-                }
-            }
-            finally
-            {
-                myResetEvent2.Set();
-            }
+            //try
+            //{
+            //    for (int n = 0; n < 1000; n++)
+            //    {
+            //        Logger.Logs["testLoggerProxy"].Info("测试线程同步问题" + n);
+            //    }
+            //}
+            //finally
+            //{
+            //    myResetEvent2.Set();
+            //}
         }
     }
 }

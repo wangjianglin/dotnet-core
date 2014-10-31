@@ -1,4 +1,4 @@
-﻿using Lin.Core.Web.Json;
+﻿using Lin.Util.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

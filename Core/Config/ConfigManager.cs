@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.ComponentModel;
 using System.Diagnostics;
-using Lin.Core.Web.Json;
 using System.Configuration;
 using System.Windows;
+using Lin.Util.Json;
 
 namespace Lin.Core.Config
 {

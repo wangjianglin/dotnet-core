@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lin.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,10 @@ namespace Lin.Core
 {
     public class Thread
     {
+        static Thread()
+        {
+            InitVars();
+        }
         public Thread(SynchronizationContext context)
         {
             this.Context = context;
@@ -117,6 +122,73 @@ namespace Lin.Core
                     back(args);
                 }), null);
             //}
+        }
+
+
+        public static IndexProperty<string,object> Vars { get; private set; }
+
+        private static void InitVars()
+        {
+            Vars = new IndexProperty<string, object>(name =>
+            {
+                return varsImpl[name];
+            }, (name, value) =>
+            {
+                varsImpl[name] = value;
+            });
+        }
+
+        private static ThreadVarsImpl varsImpl = new ThreadVarsImpl();
+
+        private class ThreadVarsImpl
+        {
+            private Dictionary<System.Threading.Thread, Dictionary<string, object>> objs = new Dictionary<System.Threading.Thread, Dictionary<string, object>>();
+
+            private System.Threading.Thread thread;
+
+            public ThreadVarsImpl()
+            {
+                thread = new System.Threading.Thread(new ParameterizedThreadStart(obj =>
+                {
+                    while (true)
+                    {
+                        foreach (System.Threading.Thread item in objs.Keys)
+                        {
+                            if (!item.IsAlive)
+                            {
+                                objs.Remove(item);
+                            }
+                        }
+                        System.Threading.Thread.Sleep(60000);
+                    }
+                }));
+                thread.Start();
+            }
+
+            public object this[string name]
+            {
+                get
+                {
+                    Dictionary<string, object> values = objs[System.Threading.Thread.CurrentThread];
+                    if (values != null)
+                    {
+                        return values[name];
+                    }
+                    return null;
+                }
+                set
+                {
+                    if (objs.ContainsKey(System.Threading.Thread.CurrentThread))
+                    {
+                        objs[System.Threading.Thread.CurrentThread].Add(name, value);
+                    }
+                    else
+                    {
+                        objs.Add(System.Threading.Thread.CurrentThread, new Dictionary<string, object>());
+                        objs[System.Threading.Thread.CurrentThread].Add(name, value);
+                    }
+                }
+            }
         }
     }
 }

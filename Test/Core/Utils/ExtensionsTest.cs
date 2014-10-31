@@ -2,7 +2,6 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Lin.Core.Utils;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AD.Test.Core.Utils

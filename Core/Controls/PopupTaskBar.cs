@@ -15,9 +15,9 @@ using System.Windows.Threading;
 using Lin.Core.Commands;
 using Lin.Core.Log;
 using Lin.Core.Utils;
-using Lin.Core.Web.Http;
 using System.Runtime.InteropServices;
 using Lin.Util;
+using Lin.Comm.Http;
 
 namespace Lin.Core.Controls
 {

@@ -16,12 +16,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using Lin.Core.Commands;
 using Lin.Core.Utils;
-using Lin.Core.Web.Http;
 using WindowForm = System.Windows.Forms;
 using LogInfo = Lin.Core.Log;
 using Lin.Core.Log;
 using Lin.Core.Controls.NotifierControls;
 using Lin.Util;
+using Lin.Comm.Http;
 
 namespace Lin.Core.Controls
 {
@@ -128,7 +128,7 @@ namespace Lin.Core.Controls
 
             #region 后台异常
 
-            Lin.Core.Web.Http.Error error = null;
+            Lin.Comm.Http.Error error = null;
             try
             {
                 error = type.GetProperty("Error").GetValue(content, null) as Error;

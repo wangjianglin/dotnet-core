@@ -9,14 +9,14 @@ namespace AD.Test.Core
     {
         public TestContextProxy()
         {
-            if (Lin.Core.ViewModel.Context.Global.IsNet == true)
-            {
-                Console.WriteLine("网络链接顺通");
-            }
-            else
-            {
-                Console.WriteLine("单机版登录进去");
-            }
+            //if (Lin.Core.ViewModel.Context.Global.IsNet == true)
+            //{
+            //    Console.WriteLine("网络链接顺通");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("单机版登录进去");
+            //}
         }
     }
 }

@@ -76,8 +76,6 @@
     <Compile Include="AddIn\AddInContentType.cs" />
     <Compile Include="AddIn\AddInStore.cs" />
     <Compile Include="AddIn\AddInToken.cs" />
-    <Compile Include="AddIn\AttributeStore.cs" />
-    <Compile Include="AddIn\AttributeToken.cs" />
     <Compile Include="AddIn\XmlStore.cs" />
     <Compile Include="App.cs" />
     <Compile Include="AppDomainVar.cs" />
@@ -141,7 +139,6 @@
     <Compile Include="TestComponent1.xaml.cs">
       <DependentUpon>TestComponent1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ThreadVars.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="View\ViewAttribute.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

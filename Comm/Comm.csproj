@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{593C6704-7D65-4283-8204-4679A7C5B94E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lin.Comm</RootNamespace>
+    <AssemblyName>Lin.Comm</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Http\Error.cs" />
+    <Compile Include="Http\File.cs" />
+    <Compile Include="Http\FileCopyPackage.cs" />
+    <Compile Include="Http\FileDeletePackage.cs" />
+    <Compile Include="Http\FileDownloadPackage.cs" />
+    <Compile Include="Http\FileUploadPackage.cs" />
+    <Compile Include="Http\Helpers.cs" />
+    <Compile Include="Http\HttpCommunicate.cs" />
+    <Compile Include="Http\HttpDownload.cs" />
+    <Compile Include="Http\HttpEncoder.cs" />
+    <Compile Include="Http\HttpPartDownload.cs" />
+    <Compile Include="Http\HttpPartUpload.cs" />
+    <Compile Include="Http\HttpRequest.cs" />
+    <Compile Include="Http\HttpUpload.cs" />
+    <Compile Include="Http\HttpUtility.cs" />
+    <Compile Include="Http\JsonHttpRequestHander.cs" />
+    <Compile Include="Http\NoneHttpRequestHander.cs" />
+    <Compile Include="Http\Packages\Package.cs" />
+    <Compile Include="Http\Packages\PackageUtils.cs" />
+    <Compile Include="Http\Packages\ResourcePackage.cs" />
+    <Compile Include="Http\Packages\TestPackage.cs" />
+    <Compile Include="Http\Packages\Version.cs" />
+    <Compile Include="Http\Packages\VersionPackage.cs" />
+    <Compile Include="Http\ParamsHander.cs" />
+    <Compile Include="Http\ResourceHttpRequestHandle.cs" />
+    <Compile Include="Http\ValidationErrorData.cs" />
+    <Compile Include="Http\Model\Version.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tcp\Command.cs" />
+    <Compile Include="Tcp\Communicate.cs" />
+    <Compile Include="Tcp\CommunicateListener.cs" />
+    <Compile Include="Tcp\CommunicateRecv.cs" />
+    <Compile Include="Tcp\DetectPackage.cs" />
+    <Compile Include="Tcp\DetectPackageResp.cs" />
+    <Compile Include="Tcp\ErrorPackage.cs" />
+    <Compile Include="Tcp\JsonParamsType.cs" />
+    <Compile Include="Tcp\JsonPath.cs" />
+    <Compile Include="Tcp\NonePackageParser.cs" />
+    <Compile Include="Tcp\Package.cs" />
+    <Compile Include="Tcp\JsonPackage.cs" />
+    <Compile Include="Tcp\JsonProtocolParser.cs" />
+    <Compile Include="Tcp\JsonTestPackage.cs" />
+    <Compile Include="Tcp\MessageHeader.cs" />
+    <Compile Include="Tcp\CommandPackage.cs" />
+    <Compile Include="Tcp\IProtocolParser.cs" />
+    <Compile Include="Tcp\CommandProtocolParser_010.cs" />
+    <Compile Include="Tcp\PackageResponse.cs" />
+    <Compile Include="Tcp\ProtocolParserType.cs" />
+    <Compile Include="Tcp\ProtocolVersionTypePackage.cs" />
+    <Compile Include="Tcp\ProtocolVersionTypeResPackage.cs" />
+    <Compile Include="Tcp\Response.cs" />
+    <Compile Include="Tcp\Session.cs" />
+    <Compile Include="Tcp\ISessionListener.cs" />
+    <Compile Include="Tcp\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{8566a665-1bbd-472c-b0d7-037d261472ea}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

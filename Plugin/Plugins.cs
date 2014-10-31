@@ -1,5 +1,6 @@
 ﻿using Lin.Plugin.AddIn;
 using Lin.Plugin.MenuStructure;
+using Lin.Util.Assemblys;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -485,14 +486,14 @@ namespace Lin.Plugin
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        public IList<AttributeToken> GetAddIns(Type type)
+        public IList<AttributeToken<AddIn.AddIn>> GetAddIns(Type type)
         {
-            List<AttributeToken> tokens = new List<AttributeToken>();
+            List<AttributeToken<AddIn.AddIn>> tokens = new List<AttributeToken<AddIn.AddIn>>();
             foreach (Plugin p in Pluginss)
             {
                 if (p.DefaultLoad)
                 {
-                    tokens.AddRange(p.GetAddIns(type));
+                   // tokens.AddRange(p.GetAddIns(type));
                 }
             }
             return tokens;

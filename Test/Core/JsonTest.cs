@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Lin.Core.Web.Json;
+using Lin.Util.Json;
 
 namespace AD.Test.Core
 {

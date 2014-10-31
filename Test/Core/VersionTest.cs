@@ -1,5 +1,4 @@
-﻿using Lin.Core.Web.Packages;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +15,13 @@ namespace AD.Test.Core
         [TestMethod]
         public void testVersion()
         {
-            VersionPackage package = new VersionPackage();
-            Request(package, (result, warning) =>
-            {
-                Console.WriteLine("build:" + ((Lin.Core.Web.Model.Version)result).build);
-            }, error =>
-            {
-            }, 0);
+            //VersionPackage package = new VersionPackage();
+            //Request(package, (result, warning) =>
+            //{
+            //    Console.WriteLine("build:" + ((Lin.Core.Web.Model.Version)result).build);
+            //}, error =>
+            //{
+            //}, 0);
         }
 
         private int count()

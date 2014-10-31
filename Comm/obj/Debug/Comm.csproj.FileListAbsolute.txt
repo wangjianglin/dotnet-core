@@ -1,0 +1,7 @@
+D:\code\app\dotnet\Comm\obj\Debug\Comm.csprojResolveAssemblyReference.cache
+D:\code\app\dotnet\Comm\bin\Debug\Lin.Comm.dll
+D:\code\app\dotnet\Comm\bin\Debug\Lin.Comm.pdb
+D:\code\app\dotnet\Comm\bin\Debug\Lin.Util.dll
+D:\code\app\dotnet\Comm\bin\Debug\Lin.Util.pdb
+D:\code\app\dotnet\Comm\obj\Debug\Lin.Comm.dll
+D:\code\app\dotnet\Comm\obj\Debug\Lin.Comm.pdb

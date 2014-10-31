@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Lin.Core.Web.Http;
-using Lin.Core.Web.Packages;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Lin.Comm.Http.Packages;
+using Lin.Comm.Http;
 
 namespace AD.Test
 {
@@ -55,16 +55,16 @@ namespace AD.Test
             {
                 if (code != null)
                 {
-                    Console.WriteLine("error:-0x{0:X}_{1:X4}", Math.Abs((long)(tmpError.code / 65536)), Math.Abs(tmpError.code) % 65536);
-                    Console.WriteLine("error message:" + tmpError.message);
-                    Console.WriteLine("error cause:" + tmpError.cause);
-                    Console.WriteLine("errot stack trace:" + tmpError.stackTrace);
-                    Console.WriteLine("data:" + tmpError.data);
-                    if (tmpError.code != code)
-                    {
-                        Console.WriteLine("server build:" + VersionInfo.build);
-                    }
-                    Assert.IsTrue(tmpError.code == code);
+                    //Console.WriteLine("error:-0x{0:X}_{1:X4}", Math.Abs((long)(tmpError.code / 65536)), Math.Abs(tmpError.code) % 65536);
+                    //Console.WriteLine("error message:" + tmpError.message);
+                    //Console.WriteLine("error cause:" + tmpError.cause);
+                    //Console.WriteLine("errot stack trace:" + tmpError.stackTrace);
+                    //Console.WriteLine("data:" + tmpError.data);
+                    //if (tmpError.code != code)
+                    //{
+                    //    Console.WriteLine("server build:" + VersionInfo.build);
+                    //}
+                    //Assert.IsTrue(tmpError.code == code);
                 }
                 if (fault != null)
                 {
@@ -74,15 +74,15 @@ namespace AD.Test
         }
 
 
-        public Lin.Core.Web.Model.Version VersionInfo
+        public Lin.Comm.Http.Model.Version VersionInfo
         {
             get
             {
-                Lin.Core.Web.Model.Version version = null;
+                Lin.Comm.Http.Model.Version version = null;
                 VersionPackage package = new VersionPackage();
                 Request(package, (result, warning) =>
                 {
-                    version = result as Lin.Core.Web.Model.Version;
+                    version = result as Lin.Comm.Http.Model.Version;
                 }, error =>
                 {
                 }, null);
