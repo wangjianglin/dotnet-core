@@ -1,0 +1,12 @@
+﻿1、CommunicateListener只能单线程工作
+
+2、多Session时，测试Coummunicate类的InitServerImpl方法中下面这段代码：
+
+lock (serverSessions)
+{
+    serverSessions.Remove(session);
+    if (sessionListener != null)
+    {
+        sessionListener.Destory(session);
+    }
+}

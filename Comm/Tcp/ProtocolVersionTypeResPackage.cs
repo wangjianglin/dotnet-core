@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lin.Util;
+using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
@@ -27,9 +28,9 @@ namespace Lin.Comm.Tcp
         }
         public void Write(byte[] bs, int offset = 0)
         {
-            Utils.Write(bs, 0xfe, 0);
-            Utils.Write(bs, this.SustainVersionNumber, 1);
-            Utils.Write(bs, this.AllSustainVersionNumber, this.AllSustainVersionNumber.Length, 2, 0);
+            ByteUtils.WriteByte(bs, 0xfe, 0);
+            ByteUtils.WriteByte(bs, this.SustainVersionNumber, 1);
+            ByteUtils.WriteBytes(bs, this.AllSustainVersionNumber, this.AllSustainVersionNumber.Length, 2, 0);
             return;
         }
 

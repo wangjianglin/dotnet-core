@@ -218,7 +218,9 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="tasks.txt" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\MetorBusyContor.xaml">
       <SubType>Designer</SubType>

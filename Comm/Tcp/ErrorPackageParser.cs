@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Lin.Comm.Tcp
 {
     [ProtocolParserType(0)]
-    public class NonePackageParser:IProtocolParser
+    public class ErrorPackageParser:IProtocolParser
     {
         public Package GetPackage()
         {

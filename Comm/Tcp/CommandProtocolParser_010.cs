@@ -35,13 +35,13 @@ namespace Lin.Comm.Tcp
             }
         }
 
-        int packageSize = 0;//已经读取的数据个数
-        int maxPackageSize = 100;//packageBody的大小、
-        byte[] packageBody = new byte[100];//存储消息，包括消息头体
+        private int packageSize = 0;//已经读取的数据个数
+        private int maxPackageSize = 100;//packageBody的大小、
+        private byte[] packageBody = new byte[100];//存储消息，包括消息头体
 
-        MessageHeader messageHeader = new MessageHeader();
+        CommandPackageMessageHeader messageHeader = new CommandPackageMessageHeader();
 
-        byte[] header = new byte[11];//BYTE header[16];//存储消息头	//2013-08-07 liyk
+        private byte[] header = new byte[11];//BYTE header[16];//存储消息头	//2013-08-07 liyk
         public Package GetPackage()
         {
             //throw new NotImplementedException();

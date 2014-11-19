@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ActionExecute.cs" />
     <Compile Include="Assemblys\AssemblyStore.cs" />
+    <Compile Include="ByteUtils.cs" />
     <Compile Include="Extensions\Attributes.cs" />
     <Compile Include="Assemblys\AttributeToken.cs" />
     <Compile Include="Extensions\Extensions.cs" />

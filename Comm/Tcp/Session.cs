@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lin.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -37,15 +38,18 @@ namespace Lin.Comm.Tcp
         {
             lock (sequeueLock)
             {
+                if (this.sequeue == 0)
+                {
+                    this.sequeue += 2;
+                }
                 pack.Sequeue = this.sequeue;
                 this.sequeue += 2;
-
             }
 
             AutoResetEvent set = new AutoResetEvent(false);
             PackageResponse r = new PackageResponse(set);
             recv.AddRequest(pack.Sequeue,r.Response);
-            this.SendImpl(pack);
+            this.SendImpl(pack,true);
             return r;
         }
 
@@ -54,23 +58,31 @@ namespace Lin.Comm.Tcp
             return (p) =>
             {
                 p.Sequeue = pack.Sequeue;
-                this.SendImpl(p);
+                this.SendImpl(p,false);
             };
         }
 
-        private void SendImpl(Package pack)
+        private void SendImpl(Package pack,bool isRequest)
         {
             //int size = pack.size();
             //byte[] bs = new byte[size];
             byte[] bs = pack.Write();
-            byte[] tmpBs = new byte[2 * bs.Length + 3 + 16];	//14
+            byte[] tmpBs = new byte[2 * bs.Length + 3 + 18];	//14
             int pos = 0;
             //将包中的数据写入数组
             tmpBs[0] = 0xC0;
             tmpBs[1] = pack.Type;
+            if (isRequest)
+            {
+                tmpBs[2] = 0;
+            }
+            else
+            {
+                tmpBs[2] = 1;
+            }
 
-            Lin.Comm.Tcp.Utils.Write(tmpBs, pack.Sequeue, 2);
-            pos = 10;
+            ByteUtils.WriteLong(tmpBs, (long)pack.Sequeue, 3);
+            pos = 11;
 
             for (int n = 0; n < bs.Length; n++)
             {				//解析FF、FA

@@ -27,7 +27,7 @@ namespace Lin.Comm.Tcp
             /// </summary>
             /// <param name="timeout">超时，以毫秒为单位，默认120秒</param>
             /// <returns></returns>
-            public Package Wait(int timeout = 120000)
+            public Package WaitForEnd(int timeout = 120000)
             {
                 set.WaitOne();
                 return this.pack;

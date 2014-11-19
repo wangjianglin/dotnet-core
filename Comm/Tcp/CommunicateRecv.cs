@@ -1,22 +1,27 @@
-﻿using Lin.Util.Assemblys;
+﻿using Lin.Util;
+using Lin.Util.Assemblys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Lin.Comm.Tcp
 {
     internal class CommunicateRecv
     {
+        private static Lin.Util.MapIndexProperty<byte, Type> ProtocolParsers;//{ get; private set; }
+        
         static CommunicateRecv()
         {
+            ProtocolParsers = new Util.MapIndexProperty<byte, Type>();
             IList<AttributeToken<ProtocolParserType>> tokens = Lin.Util.Assemblys.AssemblyStore.FindAllAttributesForCurrentDomain<ProtocolParserType>(true);
             //Console.WriteLine("count:" + tokens.Count);
             foreach (AttributeToken<ProtocolParserType> token in tokens)
             {
-                Communicate.ProtocolParsers[token.Attribute.Type] = token.OwnerType;
+                ProtocolParsers[token.Attribute.Type] = token.OwnerType;
             }
         }
         private CommunicateListener listener;
@@ -38,7 +43,7 @@ namespace Lin.Comm.Tcp
             {
                 return parser;
             }
-            parser = (IProtocolParser)Activator.CreateInstance(Communicate.ProtocolParsers[b]);
+            parser = (IProtocolParser)Activator.CreateInstance(ProtocolParsers[b]);
             protocolParserInts[b] = parser;
             return parser;
         }
@@ -53,31 +58,47 @@ namespace Lin.Comm.Tcp
         private Lin.Util.MapIndexProperty<ulong, Response> sequeues = new Util.MapIndexProperty<ulong, Response>();
         private void CommunicateListener(Package package)
         {
-            Response r = sequeues[package.Sequeue];
-            if (r != null)
-            {
-                package.State = PackageState.RESPONSE;
-            }
-            else
-            {
-                package.State = PackageState.REQUEST;
-            }
+            //采用线程池技术
+            new Thread(() => { CommunicateListenerImpl(package); }).Start();
+        }
+
+        private void CommunicateListenerImpl(Package package)
+        {
+            //if (r != null)
+            //{
+            //    package.State = PackageState.RESPONSE;
+            //}
+            //else
+            //{
+            //    package.State = PackageState.REQUEST;
+            //}
                 bool isResponse = false;
                 Response sr = this.session.Response(package);
             if (this.listener != null)
             {
                 //try {
+                if (package.State == PackageState.REQUEST)
+                {
                     listener(this.session, package, p => { isResponse = true; sr(p); });
+                }
+                else
+                {
+                    listener(this.session, package, null);
+                }
                 //}
                 //finally
                 //{
                    
                 //}
             }
-            if (r != null)
+            if (package.State == PackageState.RESPONSE)
             {
+                Response r = sequeues[package.Sequeue];
                 sequeues[package.Sequeue] = null;
-                r(package);
+                if (r != null)
+                {
+                    r(package);
+                }
             }
             else
             {
@@ -88,7 +109,7 @@ namespace Lin.Comm.Tcp
             }
         }
 
-        public unsafe void RecvData()
+        internal void RecvData()
         {
             const int bufferSize = 2048;
             //byte versionSize;
@@ -110,7 +131,7 @@ namespace Lin.Comm.Tcp
             IProtocolParser parser = null;
 
 
-            byte[] sequeueBytes = new byte[8];//存储序列号
+            byte[] sequeueBytes = new byte[9];//存储包状态和序列号
             int sequeueCount = 0;
             ulong sequeue = 0;
 
@@ -155,7 +176,15 @@ namespace Lin.Comm.Tcp
                         {
                             //Package pack = PackageManager.Parse(packageBody);
                             Package pack = parser.GetPackage();
-                            Utils.Read(sequeueBytes, out sequeue);
+                            if (sequeueBytes[0] == 0)
+                            {
+                                pack.State = PackageState.REQUEST;
+                            }
+                            else
+                            {
+                                pack.State = PackageState.RESPONSE;
+                            }
+                            sequeue = (ulong)ByteUtils.ReadLong(sequeueBytes,1);
                             pack.Sequeue = sequeue;
                             initStatue();
                             //listener(null,pack,this.session.Response(pack));
@@ -201,7 +230,7 @@ namespace Lin.Comm.Tcp
                         isFirst = false;
                         continue;
                     }
-                    if (sequeueCount < 8)
+                    if (sequeueCount < sequeueBytes.Length)
                     {
                         sequeueBytes[sequeueCount++] = ch[n];
                         continue;

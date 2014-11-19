@@ -10,14 +10,10 @@ namespace Lin.Comm.Tcp
     public class Communicate
     {
 
-        private static IDictionary<byte, Type> protocolParsers = new Dictionary<byte, Type>();
+        //private static IDictionary<byte, Type> protocolParsers = new Dictionary<byte, Type>();
 
         //public static readonly Lin.Util.MapIndexProperty<byte, Type> ProtocolParsers = new Util.MapIndexProperty<byte, Type>();
-        public static Lin.Util.MapIndexProperty<byte, Type> ProtocolParsers { get; private set; }
-        static Communicate()
-        {
-            ProtocolParsers = new Util.MapIndexProperty<byte, Type>();
-        }
+        
         
         //public bool Connected { get; private set; }
         /// <summary>

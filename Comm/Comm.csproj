@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -78,23 +78,23 @@
     <Compile Include="Tcp\ErrorPackage.cs" />
     <Compile Include="Tcp\JsonParamsType.cs" />
     <Compile Include="Tcp\JsonPath.cs" />
-    <Compile Include="Tcp\NonePackageParser.cs" />
+    <Compile Include="Tcp\ErrorPackageParser.cs" />
     <Compile Include="Tcp\Package.cs" />
     <Compile Include="Tcp\JsonPackage.cs" />
     <Compile Include="Tcp\JsonProtocolParser.cs" />
     <Compile Include="Tcp\JsonTestPackage.cs" />
-    <Compile Include="Tcp\MessageHeader.cs" />
+    <Compile Include="Tcp\CommandPackageMessageHeader.cs" />
     <Compile Include="Tcp\CommandPackage.cs" />
     <Compile Include="Tcp\IProtocolParser.cs" />
     <Compile Include="Tcp\CommandProtocolParser_010.cs" />
     <Compile Include="Tcp\PackageResponse.cs" />
+    <Compile Include="Tcp\PackageState.cs" />
     <Compile Include="Tcp\ProtocolParserType.cs" />
     <Compile Include="Tcp\ProtocolVersionTypePackage.cs" />
     <Compile Include="Tcp\ProtocolVersionTypeResPackage.cs" />
     <Compile Include="Tcp\Response.cs" />
     <Compile Include="Tcp\Session.cs" />
     <Compile Include="Tcp\ISessionListener.cs" />
-    <Compile Include="Tcp\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Util\Util.csproj">
@@ -102,7 +102,9 @@
       <Name>Util</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="tasks.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

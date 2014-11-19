@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lin.Comm.Tcp
 {
-    public enum PackageState
-    {
-        NONE,REQUEST,RESPONSE
-    }
+
     public abstract class Package
     {
         public PackageState State { get;internal set; }

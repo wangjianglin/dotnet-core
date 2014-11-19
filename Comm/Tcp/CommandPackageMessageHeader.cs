@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lin.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lin.Comm.Tcp
 {
-    public class MessageHeader
+    public class CommandPackageMessageHeader
     {
         private int _command;
         /// <summary>
@@ -51,11 +52,11 @@ namespace Lin.Comm.Tcp
 
         public void read(byte[] headers)
         {
-            Utils.Read(headers, out _majorVersion);
-            Utils.Read(headers, out _minorVersion, 1);
-            Utils.Read(headers, out _correctVersion, 2);
-            Utils.Read(headers, out _command, 3);
-            Utils.Read(headers, out _length, 7);
+            _majorVersion = ByteUtils.ReadByte(headers);
+            _minorVersion = ByteUtils.ReadByte(headers, 1);
+            _correctVersion = ByteUtils.ReadByte(headers, 2);
+            _command = ByteUtils.ReadInt(headers,  3);
+            _length = ByteUtils.ReadInt(headers,  7);
         }
     }
 }

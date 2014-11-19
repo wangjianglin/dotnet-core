@@ -15,17 +15,7 @@ namespace Lin.Comm.Tcp
         private byte _minor = 0;
         private byte _revise = 0;
 
-        static CommandPackage()
-        {
-            return;
-        }
-
-        //protected CommandPackage()
-        //{
-        //    return;
-        //}
-
-        protected unsafe CommandPackage()
+        protected CommandPackage()
         {
             Type type = this.GetType();
             Command c = type.GetCustomAttribute<Command>(false);
@@ -51,11 +41,11 @@ namespace Lin.Comm.Tcp
         {
             byte[] bs = new byte[this.Size];
             //Utils.Write(bs, 0, 0);
-            Utils.Write(bs, this._major, 0);
-            Utils.Write(bs, this._minor, 1);
-            Utils.Write(bs, this._revise, 2);
-            Utils.Write(bs, this._command, 3);
-            Utils.Write(bs, this.Size, 7);
+            ByteUtils.WriteByte(bs, this._major, 0);
+            ByteUtils.WriteByte(bs, this._minor, 1);
+            ByteUtils.WriteByte(bs, this._revise, 2);
+            ByteUtils.WriteInt(bs, this._command, 3);
+            ByteUtils.WriteInt(bs, this.Size, 7);
             //Utils.Write(bs, 0, 11);
             this.bodyWrite(bs, 11);
             return bs;
