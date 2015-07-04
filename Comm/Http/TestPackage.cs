@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lin.Comm.Http.Packages
+namespace Lin.Comm.Http
 {
     public class TestPackage:Package
     {
@@ -11,8 +11,8 @@ namespace Lin.Comm.Http.Packages
         {
             this.location = "/core/comm/test.action";
             this.RespType = typeof(string);
-            base.Version.Major = 0u;
-            base.Version.Minor = 0u;
+            //base.Version.Major = 0u;
+            //base.Version.Minor = 0u;
         }
         public string data { get; set; }
         public override IDictionary<string, object> GetParams()

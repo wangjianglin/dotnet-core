@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Lin.Util.Extensions;
+using System.Net;
 
 namespace Lin.Comm.Http
 {
@@ -24,8 +25,12 @@ namespace Lin.Comm.Http
             public static long Timestamp { get { return (DateTime.UtcNow.Ticks - offset) / 10000; } }
         }
 
-        public string GetParams(Packages.Package package)
+        public string GetParams(HttpWebRequest request, Package package)
         {
+            request.Method = "POST";//以POST方式传递数据
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.Headers.Add(Constants.HTTP_COMM_PROTOCOL, Constants.HTTP_VERSION);
+
             StringBuilder sb = new StringBuilder();
             sb.Append('{');
             sb.Append("\"location\":");
@@ -63,17 +68,17 @@ namespace Lin.Comm.Http
             //Console.WriteLine("value:" + sb.ToString());
             //Console.WriteLine("b64s:" + b64s);
             //Console.WriteLine("coding:" + Encoding.Default.EncodingName);
-            return "__jsonParam__=" + HttpUtility.UrlEncode(b64s) +
-                "&__request_coding__=" + Encoding.Default.BodyName +
+            return Constants.HTTP_JSON_PARAM+"=" + HttpUtility.UrlEncode(b64s) +
+                "&" + Constants.HTTP_REQUEST_CODING+ "=" + Encoding.Default.BodyName +
                 //"&__version__=0.1"+
-                "&__result__=json";
+                "&" + Constants.HTTP_RESULT + "=json";
         }
 
-        public void Response(Packages.Package package, string resp,Action<Object,IList<Error>> result, Action<Error> fault)
+        public void Response(Package package, string resp,Action<Object,IList<Error>> result, Action<Error> fault)
         {
             try
             {
-                resp = HttpUtility.UrlDecode(resp);
+                //resp = HttpUtility.UrlDecode(resp);
 
                 //resultString new String(System.Convert.FromBase64String(resultString));
                 Stream stream = new MemoryStream(System.Convert.FromBase64String(resp));
@@ -110,7 +115,7 @@ namespace Lin.Comm.Http
         }
 
 
-        private void ProcessResultData(Packages.Package package,String resultString,Action<Object,IList<Error>> Result, Action<Error> Fault)
+        private void ProcessResultData(Package package,String resultString,Action<Object,IList<Error>> Result, Action<Error> Fault)
         {
             //对返回数据进行处理
             //System.Runtime.Serialization.Json.DataContractJsonSerializer dc = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(ResultData));

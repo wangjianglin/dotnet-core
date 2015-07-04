@@ -19,8 +19,8 @@ namespace AD.Test.Core
         {
             this.location = "/cloud/action/comm!exception.action";
             this.RespType = typeof(object);
-            base.Version.Major = 0u;
-            base.Version.Minor = 0u;
+            //base.Version.Major = 0u;
+            //base.Version.Minor = 0u;
         }
         public override IDictionary<string, object> GetParams()
         {
@@ -35,8 +35,8 @@ namespace AD.Test.Core
         {
             this.location = "/cloud/action/comm!adException.action";
             this.RespType = typeof(object);
-            base.Version.Major = 0u;
-            base.Version.Minor = 0u;
+            //base.Version.Major = 0u;
+            //base.Version.Minor = 0u;
         }
     }
 
@@ -121,18 +121,19 @@ namespace AD.Test.Core
             //System.GC.Collect();
             //System.GC.Collect();
             //System.GC.Collect();
-            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/web/__http_comm_protocol__");
-            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/");
+            //Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/web/__http_comm_protocol__");
+            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/lin.demo/");
             HttpCommunicate.HttpRequest += (HttpCommunicateType type, object content) =>
             {
-                Console.WriteLine("-------------2");
+                //Console.WriteLine("-------------2");
             };
             object o = (object)null;
             Console.WriteLine("obj:" + o);
             for (int n = 0; n < 10; n++)
             {
                 TestPackage package = new TestPackage();
-                package.data = "测试中文--2";
+                package.data = "测试中文";
+                package.data = "test.";
                 Request(package, (result, warning) =>
                 {
                     Console.WriteLine("result:" + result);

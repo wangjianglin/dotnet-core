@@ -268,7 +268,18 @@ namespace Lin.Comm.Http
         public Uri CommUri
         {
             get { return _commUri; }
-            set { _commUri = value; }
+            set
+            {
+                string uriStirng = value.AbsoluteUri;
+                if (uriStirng.EndsWith("/"))
+                {
+                    _commUri = new Uri(uriStirng.Substring(0, uriStirng.Length - 1));
+                }
+                else
+                {
+                    _commUri = new Uri(uriStirng);
+                }
+            }
         }
 
         /// <summary>

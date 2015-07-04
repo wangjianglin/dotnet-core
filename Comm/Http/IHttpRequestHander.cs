@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace Lin.Comm.Http
@@ -12,8 +13,8 @@ namespace Lin.Comm.Http
         /// </summary>
         /// <param name="package"></param>
         /// <returns></returns>
-        string GetParams(Packages.Package package);
+        string GetParams(HttpWebRequest request,Package package);
 
-        void Response(Packages.Package package, string resp, Action<Object, IList<Error>> result, Action<Error> fault);
+        void Response(Package package, string resp, Action<Object, IList<Error>> result, Action<Error> fault);
     }
 }

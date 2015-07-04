@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lin.Comm.Http.Packages
+namespace Lin.Comm.Http
 {
     /// <summary>
     /// 数据包的版本信息

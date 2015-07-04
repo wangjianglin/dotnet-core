@@ -10,9 +10,9 @@ namespace Lin.Comm.Http.Packages
         public VersionPackage()
         {
             this.location = "/web/action/version_info!get.action";
-            this.RespType = typeof(Model.Version);
-            this.Version.Major = 0;
-            this.Version.Minor = 0;
+            this.RespType = typeof(Version);
+            //this.Version.Major = 0;
+            //this.Version.Minor = 0;
         }
     }
 }

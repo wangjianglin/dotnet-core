@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Lin.Comm.Http.Packages
+namespace Lin.Comm.Http
 {
     /// <summary>
     /// 用于请求服务器上的静态资源

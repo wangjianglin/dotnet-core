@@ -74,15 +74,15 @@ namespace AD.Test
         }
 
 
-        public Lin.Comm.Http.Model.Version VersionInfo
+        public Lin.Comm.Http.Version VersionInfo
         {
             get
             {
-                Lin.Comm.Http.Model.Version version = null;
+                Lin.Comm.Http.Version version = null;
                 VersionPackage package = new VersionPackage();
                 Request(package, (result, warning) =>
                 {
-                    version = result as Lin.Comm.Http.Model.Version;
+                    version = result as Lin.Comm.Http.Version;
                 }, error =>
                 {
                 }, null);

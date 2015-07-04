@@ -1,0 +1,4 @@
+﻿
+
+HTTP通信
+Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "System.Json.resources" was correctly embedded or linked into assembly "Lin.Util" at compile time, or that all the satellite assemblies required are loadable and fully signed.

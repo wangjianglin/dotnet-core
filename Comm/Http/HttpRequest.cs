@@ -35,18 +35,18 @@ namespace Lin.Comm.Http
             }
         }
 
-        private Packages.Package package;
+        private Package package;
 
         static HttpRequest()
         {
         }
-        public static readonly String VERSION = "0.1";
-        private static readonly String HTTP_COMM_PROTOCOL = "__http_comm_protocol__";
+        //public static readonly String VERSION = "0.1";
+        //private static readonly String HTTP_COMM_PROTOCOL = "__http_comm_protocol__";
 
         private Uri uri;
         private string CommUriString = null;
         private HttpWebRequest request = null;
-        public void Request(HttpCommunicateImpl impl,Packages.Package package, Action<Object, IList<Error>> result, Action<Error> fault)
+        public void Request(HttpCommunicateImpl impl,Package package, Action<Object, IList<Error>> result, Action<Error> fault)
         {
             this.Result = result;
             this._fault = fault;
@@ -76,13 +76,14 @@ namespace Lin.Comm.Http
                     if(!package.EnableCache)
                     {
                         CommUriString = impl.CommUri.AbsoluteUri;
+                        
                         if (package.location.StartsWith("/"))
                         {
-                            CommUriString += package.location.Substring(1);
+                            CommUriString += package.location;
                         }
                         else
                         {
-                            CommUriString += package.location;
+                            CommUriString += "/" + package.location;
                         }
                         if (CommUriString.Contains("?"))
                         {
@@ -93,36 +94,7 @@ namespace Lin.Comm.Http
                             uri = new Uri(CommUriString + "?_time_stamp_" + DateTime.Now.Ticks + "=1");
                         }
                     }
-                //}
-                //else
-                //{
-                //    //HttpCommunicate.CommUri.
-                //    string tmpUrl = null;
-                //    if (package.location.StartsWith("/"))
-                //    {
-                //        tmpUrl = impl.CommUri.Scheme + "://" + impl.CommUri.Host + ":" + impl.CommUri.Port + package.location;
-                //    }
-                //    else
-                //    {
-                //        tmpUrl = package.location;
-                //    }
-                //    if (package.EnableCache)
-                //    {
-                //        uri = new Uri(tmpUrl);
-                //    }
-                //    else
-                //    {
-                //        if (package.location.EndsWith("?"))
-                //        {
-                //            uri = new Uri(tmpUrl + "&_time_stamp_" + DateTime.Now.Ticks + "=1");
-                //        }
-                //        else
-                //        {
-                //            uri = new Uri(tmpUrl + "?_time_stamp_" + DateTime.Now.Ticks + "=1");
-                //        }
-                //    }
-                //}
-                //Uri uri;
+               
 
                 lock (this)
                 {
@@ -133,7 +105,7 @@ namespace Lin.Comm.Http
                 request.Method = "POST";//以POST方式传递数据
                 request.ContentType = "application/x-www-form-urlencoded";
                 request.CookieContainer = impl.Cookies;
-                request.Headers.Add(HTTP_COMM_PROTOCOL, VERSION);
+                //request.Headers.Add(Constants.HTTP_COMM_PROTOCOL, Constants.HTTP_VERSION);
                 //request.Timeout
                 //Console.WriteLine("time out:" + request.Timeout);
                 //if (package.HasParams)
@@ -239,7 +211,7 @@ namespace Lin.Comm.Http
                 string param = null; 
                 try
                 {
-                    param = package.RequestHandle.GetParams(package);
+                    param = package.RequestHandle.GetParams(request,package);
                 }
                 catch (System.Exception e)
                 {

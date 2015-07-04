@@ -10,8 +10,8 @@ namespace Lin.Comm.Http
     {
         public FileDeletePackage()
         {
-            this.Version.Minor = 0;
-            this.Version.Major = 0;
+            //this.Version.Minor = 0;
+            //this.Version.Major = 0;
             this.RespType = null;
             this.location = "/cloud/action/file!delete.action";
         }

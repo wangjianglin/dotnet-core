@@ -5,7 +5,7 @@ using System.Text;
 using System.Net;
 using System.ComponentModel;
 
-namespace Lin.Comm.Http.Packages
+namespace Lin.Comm.Http
 {
     /// <summary>
     /// Url类型，是采用绝对路径，还是采用相对于 配置Server的路径
@@ -45,8 +45,8 @@ namespace Lin.Comm.Http.Packages
             //HasParams = true;
             this.RespType = _DefautlRespType;
             this.Version = new Version();
-            this.Version.Major = 0;
-            this.Version.Minor = 0;
+            //this.Version.Major = 0;
+            //this.Version.Minor = 0;
         }
         virtual public string location { get; set; }
         virtual public Type RespType { get;protected set; }

@@ -10,8 +10,8 @@ namespace Lin.Comm.Http
     {
         public FileCopyPackage()
         {
-            this.Version.Minor = 0;
-            this.Version.Major = 0;
+            //this.Version.Minor = 0;
+            //this.Version.Major = 0;
             this.RespType = null;
             this.location = "/cloud/action/file!copy.action";
         }

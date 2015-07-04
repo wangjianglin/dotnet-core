@@ -6,13 +6,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AD.Test.Core
 {
-    public class ValidationPackage : Lin.Comm.Http.Packages.Package
+    public class ValidationPackage : Lin.Comm.Http.Package
     {
         public ValidationPackage()
         {
             this.location = "/web/action/validation!test1.action";
-            this.Version.Major = 0;
-            this.Version.Minor = 0;
+            //this.Version.Major = 0;
+            //this.Version.Minor = 0;
         }
 
         public override IDictionary<string, object> GetParams()

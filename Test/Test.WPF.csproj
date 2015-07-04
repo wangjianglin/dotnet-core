@@ -133,6 +133,9 @@
     <None Include="ClassDiagram1.cd" />
     <None Include="error.code" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="tasks.txt" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
