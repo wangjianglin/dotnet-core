@@ -6,12 +6,6 @@ using System.Windows.Controls;
 using System.Windows;
 using Lin.Core.AddIn;
 
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.Controls")]
-
-#endregion
-
 namespace Lin.Core.Controls
 {
     /// <summary>
@@ -54,16 +48,16 @@ namespace Lin.Core.Controls
 
         static View()
         {
-            Lin.Core.Config.IConfigManager netConfig = Lin.Core.Config.ConfigManager.System;
+            //Lin.Core.Config.IConfigManager netConfig = Lin.Core.Config.ConfigManager.System;
             //string path = Environment.CurrentDirectory;
-            string path = Lin.Plugin.Utils.GetRunDir(1, true);
-            AddInStore.Update(path);
+            //string path = Lin.Plugin.Utils.GetRunDir(1, true);
+            //AddInStore.Update(path);
 
-            tokens = AddInStore.FindAddIns();
-            if (tokens == null)
-            {
-                tokens = new List<AddInToken>();
-            }
+            //tokens = AddInStore.FindAddIns();
+            //if (tokens == null)
+            //{
+            //    tokens = new List<AddInToken>();
+            //}
         }
 
         /// <summary>

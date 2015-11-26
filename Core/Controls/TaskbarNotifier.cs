@@ -87,7 +87,7 @@ namespace Lin.Core.Controls
             //{
             //    return;
             //}
-            int _level = (int)Lin.Core.ViewModel2.Context.Global.LogLevel;
+            int _level = (int)Lin.Core.Context.Global.LogLevel;
             int l = (int)level;
 
             Type type = content.GetType();
@@ -304,7 +304,7 @@ namespace Lin.Core.Controls
         /// <param name="title">标题</param>
         private static void ShowImpl(object contentObj, LogLevel level = LogLevel.INFO, string title = null)
         {
-            int _level = (int)Lin.Core.ViewModel2.Context.Global.LogLevel;
+            int _level = (int)Lin.Core.Context.Global.LogLevel;
             if (contentObj == null)
             {
                 return;

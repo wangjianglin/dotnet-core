@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lin.Comm.Http
 {
-    public class TestPackage:Package
+    public class TestPackage:HttpPackage
     {
         public TestPackage()
         {

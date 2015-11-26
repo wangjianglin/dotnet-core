@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Lin.Core</RootNamespace>
     <AssemblyName>Lin.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -101,6 +101,7 @@
     <Compile Include="Config\CommandLineArguments.cs" />
     <Compile Include="Config\ConfigManagerProxy.cs" />
     <Compile Include="Config\IConfigManager.cs" />
+    <Compile Include="Controls\ImagesView.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Controls\Actions\IsAction.cs" />
     <Compile Include="AddIn\AddIn.cs" />
@@ -128,27 +129,28 @@
     <Compile Include="Controls\NotifierControls\SystemExceptionControl.cs" />
     <Compile Include="Controls\PopupTaskBar.cs" />
     <Compile Include="Controls\PopupTaskbarContent.cs" />
-    <Compile Include="Controls\PropertyTemplateSelector.cs" />
+    <Compile Include="Template\PropertyTemplateSelector.cs" />
     <Compile Include="Controls\TaskbarNotifier.cs" />
     <Compile Include="Controls\TaskbarNotifierPosition.cs" />
     <Compile Include="Controls\ViewAttribute.cs" />
     <Compile Include="Controls\ViewItemAttribute.cs" />
     <Compile Include="Controls\StateManager.cs" />
-    <Compile Include="Controls\StatusChangedCommand.cs" />
+    <Compile Include="Commands\StatusChangedCommand.cs" />
     <Compile Include="Controls\CloseEnable.cs" />
     <Compile Include="Controls\Dialog.cs" />
     <Compile Include="Controls\ICloseEnable.cs" />
-    <Compile Include="Controls\TypeTemplateSelector.cs" />
-    <Compile Include="Controls\TypeTemplate.cs" />
+    <Compile Include="Template\TypeTemplateSelector.cs" />
+    <Compile Include="Template\TypeTemplate.cs" />
     <Compile Include="Controls\View.cs" />
     <Compile Include="Controls\ViewItems.cs" />
-    <Compile Include="Controls\PropertyTemplate.cs" />
+    <Compile Include="Template\PropertyTemplate.cs" />
     <Compile Include="Converter\AndConverter.cs" />
     <Compile Include="DataValidation\DecimalPoint.cs" />
     <Compile Include="DataValidation\IDataValidationInfo.cs" />
     <Compile Include="DataValidation\Validations.cs" />
     <Compile Include="DynamicModel.cs" />
     <Compile Include="GetAppDomain.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Log\ILogger.cs" />
     <Compile Include="Log\Level.cs" />
     <Compile Include="Log\Logger.cs" />
@@ -188,7 +190,7 @@
     <Compile Include="Utils\Axis.cs" />
     <Compile Include="Utils\ParamsToDictionary.cs" />
     <Compile Include="Utils\WaveFile.cs" />
-    <Compile Include="ViewModel\Context.cs" />
+    <Compile Include="Context.cs" />
     <Compile Include="ViewModel\ContextProxy.cs" />
     <Compile Include="ViewModel\IContext.cs" />
     <Compile Include="ViewModel.cs" />
@@ -250,6 +252,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Themes\Generic\ImagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\Generic\NetWorkExceptionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -291,10 +297,6 @@
     <ProjectReference Include="..\Comm\Comm.csproj">
       <Project>{593c6704-7d65-4283-8204-4679a7c5b94e}</Project>
       <Name>Comm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Plugin\Plugin.csproj">
-      <Project>{5da527f1-87ac-424e-98dd-687c8c6dd33b}</Project>
-      <Name>Plugin</Name>
     </ProjectReference>
     <ProjectReference Include="..\Util\Util.csproj">
       <Project>{8566a665-1bbd-472c-b0d7-037d261472ea}</Project>

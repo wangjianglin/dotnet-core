@@ -5,13 +5,6 @@ using System.Text;
 using System.Globalization;
 using System.Windows.Data;
 
-
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.Converter")]
-
-#endregion
-
 namespace Lin.Core.Converter
 {
     /// <summary>

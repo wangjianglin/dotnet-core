@@ -10,5 +10,8 @@
         <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/SystemExceptionControl.xaml" />
         <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/ErrorControl.xaml" />
         <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/BusyControl.xaml" />
+        <ResourceDictionary Source="/Lin.Core;component/Themes/Generic/ImagesView.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+
+    
 </ResourceDictionary>

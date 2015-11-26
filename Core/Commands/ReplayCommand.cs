@@ -3,14 +3,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
-
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.Commands")]
-
-#endregion
-
-
 namespace Lin.Core.Commands
 {
     /// <summary>

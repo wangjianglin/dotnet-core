@@ -161,6 +161,16 @@ namespace Lin.Core
             get { return this; }
         }
 
+        public object this[string s]
+        {
+            get { return self.values[s]; }
+            set
+            {
+                self.values[s] = value;
+                //this.OnPropertyChanged("");
+            }
+        }
+
         private void InitDynamicModel()
         {
             this.values = new IndexProperty<string, object>(name =>

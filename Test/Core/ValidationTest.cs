@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AD.Test.Core
 {
-    public class ValidationPackage : Lin.Comm.Http.Package
+    public class ValidationPackage : Lin.Comm.Http.HttpPackage
     {
         public ValidationPackage()
         {

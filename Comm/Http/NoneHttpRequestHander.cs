@@ -8,14 +8,14 @@ namespace Lin.Comm.Http
 {
     internal class NoneHttpRequestHandle : IHttpRequestHandle
     {
-        public string GetParams(HttpWebRequest request, Package package)
+        public byte[] GetParams(HttpWebRequest request, HttpPackage package)
         {
             return null;
         }
 
-        public void Response(Package package, string resp,Action<Object, IList<Error>> result, Action<Error> fault)
+        public void Response(HttpPackage package, byte[] bs,Action<Object, IList<Error>> result, Action<Error> fault)
         {
-            result(resp,null);
+            //result(resp,null);
         }
     }
 }

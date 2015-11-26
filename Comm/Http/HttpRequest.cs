@@ -35,7 +35,7 @@ namespace Lin.Comm.Http
             }
         }
 
-        private Package package;
+        private HttpPackage package;
 
         static HttpRequest()
         {
@@ -46,7 +46,7 @@ namespace Lin.Comm.Http
         private Uri uri;
         private string CommUriString = null;
         private HttpWebRequest request = null;
-        public void Request(HttpCommunicateImpl impl,Package package, Action<Object, IList<Error>> result, Action<Error> fault)
+        public void Request(HttpCommunicateImpl impl,HttpPackage package, Action<Object, IList<Error>> result, Action<Error> fault)
         {
             this.Result = result;
             this._fault = fault;
@@ -57,7 +57,7 @@ namespace Lin.Comm.Http
                 //string urlPath = package.location;
                 //string urlPath = "__http_comm_protocol__";
                 //String uriString = uri.AbsoluteUri;
-                //给uri加一个时间戳，停止浏览器缓存
+                //给uri加一个时间戳，阻止浏览器缓存
                 //采用_time_stamp_" + DateTime.Now.Ticks做为参数名，防止url中有_time_stamp_参数名，
                 //if (package.UrlType == Packages.UrlType.RELATIVE)
                 //{
@@ -99,6 +99,7 @@ namespace Lin.Comm.Http
                 lock (this)
                 {
                     request = (HttpWebRequest)WebRequest.Create(uri);
+                    
                 }
                 //Console.WriteLine("proxy:" + request.Proxy);
                 //request.Proxy = proxy;
@@ -142,15 +143,24 @@ namespace Lin.Comm.Http
         /// <param name="asynchronousResult"></param>
         private void RespCallback(IAsyncResult asynchronousResult)
         {
-            string resultString = null;
+            //string resultString = null;
+            byte[] result = null;
             try
             {
                 HttpWebRequest request = asynchronousResult.AsyncState as HttpWebRequest;
                 HttpWebResponse response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
 
                 Stream _in = response.GetResponseStream();
-                StreamReader reader = new StreamReader(_in);
-                resultString = reader.ReadToEnd();
+
+                System.IO.MemoryStream _out = new MemoryStream();
+               
+                byte[] bs = new byte[4096];
+                int count = 0;
+                while((count = _in.Read(bs,0,4096)) != 0){
+                    _out.Write(bs,0,count);
+                }
+                result = _out.ToArray();
+                _out.Close();
                 //Stream stream = new MemoryStream(Encoding.UTF8.GetBytes(resultString));
                 //Encoding encoding = DetectEncoding(stream.ReadByte(), stream.ReadByte());
                 //stream.Position = 0L;
@@ -196,7 +206,7 @@ namespace Lin.Comm.Http
                 }
             }
             //ProcessResultData(resultString);
-            package.RequestHandle.Response(package, resultString, Result, Fault);
+            package.RequestHandle.Response(package, result, Result, Fault);
         }
         /// <summary>
         /// 设置请求参数
@@ -208,10 +218,18 @@ namespace Lin.Comm.Http
             {
                 HttpWebRequest request = asynchronousResult.AsyncState as HttpWebRequest;
                 request.ContentType = "application/x-www-form-urlencoded";
-                string param = null; 
+                byte[] param = null; 
                 try
                 {
                     param = package.RequestHandle.GetParams(request,package);
+                    //if (bs != null)
+                    //{
+                    //    param = new char[bs.Length];
+                    //    for (int n = 0; n < param.Length; n++)
+                    //    {
+                    //        param[n] = (char)bs[n];
+                    //    }
+                    //}
                 }
                 catch (System.Exception e)
                 {
@@ -223,15 +241,18 @@ namespace Lin.Comm.Http
                     }
                     return;
                 }
-                Stream stream = request.EndGetRequestStream(asynchronousResult);
-                StreamWriter _out = new StreamWriter(stream);
-                //if (PostData != null && PostData != "")
-                //{
+                if (param != null)
+                {
+                    Stream stream = request.EndGetRequestStream(asynchronousResult);
+                    //StreamWriter _out = new StreamWriter(stream);
+                    //if (PostData != null && PostData != "")
+                    //{
 
+                    stream.Write(param, 0, param.Length);
+                }
+                //_out.Write(param);
 
-                _out.Write(param);
-
-                _out.Close();
+                //_out.Close();
                 request.BeginGetResponse(new AsyncCallback(RespCallback), request);
             }
             catch (System.Text.EncoderFallbackException e)

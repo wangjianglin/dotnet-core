@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lin.Comm.Http
 {
-    public class FileCopyPackage : Package
+    public class FileCopyPackage : HttpPackage
     {
         public FileCopyPackage()
         {

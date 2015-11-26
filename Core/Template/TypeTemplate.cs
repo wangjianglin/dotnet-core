@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace Lin.Core.Controls
+namespace Lin.Core.Template
 {
     /// <summary>
     /// 

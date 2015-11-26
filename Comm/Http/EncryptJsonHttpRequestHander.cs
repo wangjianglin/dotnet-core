@@ -9,7 +9,7 @@ using System.Net;
 
 namespace Lin.Comm.Http
 {
-    internal class JsonHttpRequestHandle : IHttpRequestHandle
+    internal class EncryptJsonHttpRequestHander : IHttpRequestHandle
     {
         internal static class Utils
         {
@@ -25,7 +25,7 @@ namespace Lin.Comm.Http
             public static long Timestamp { get { return (DateTime.UtcNow.Ticks - offset) / 10000; } }
         }
 
-        public string GetParams(HttpWebRequest request, Package package)
+        public byte[] GetParams(HttpWebRequest request, HttpPackage package)
         {
             request.Method = "POST";//以POST方式传递数据
             request.ContentType = "application/x-www-form-urlencoded";
@@ -68,20 +68,24 @@ namespace Lin.Comm.Http
             //Console.WriteLine("value:" + sb.ToString());
             //Console.WriteLine("b64s:" + b64s);
             //Console.WriteLine("coding:" + Encoding.Default.EncodingName);
-            return Constants.HTTP_JSON_PARAM+"=" + HttpUtility.UrlEncode(b64s) +
+            string r = Constants.HTTP_JSON_PARAM+"=" + HttpUtility.UrlEncode(b64s) +
                 "&" + Constants.HTTP_REQUEST_CODING+ "=" + Encoding.Default.BodyName +
                 //"&__version__=0.1"+
                 "&" + Constants.HTTP_RESULT + "=json";
+            return Encoding.ASCII.GetBytes(r);
         }
 
-        public void Response(Package package, string resp,Action<Object,IList<Error>> result, Action<Error> fault)
+        public void Response(HttpPackage package, byte[] bs,Action<Object,IList<Error>> result, Action<Error> fault)
         {
+            string resp = null;
             try
             {
+                //resp = Encoding.ASCII.GetDecoder().
                 //resp = HttpUtility.UrlDecode(resp);
 
                 //resultString new String(System.Convert.FromBase64String(resultString));
-                Stream stream = new MemoryStream(System.Convert.FromBase64String(resp));
+                //Stream stream = new MemoryStream(System.Convert.FromBase64String(resp));
+                Stream stream = new MemoryStream(bs);
                 resp = new StreamReader(stream, Encoding.UTF8, true).ReadToEnd();
             }
             catch (System.ArgumentNullException e)
@@ -115,7 +119,7 @@ namespace Lin.Comm.Http
         }
 
 
-        private void ProcessResultData(Package package,String resultString,Action<Object,IList<Error>> Result, Action<Error> Fault)
+        private void ProcessResultData(HttpPackage package,String resultString,Action<Object,IList<Error>> Result, Action<Error> Fault)
         {
             //对返回数据进行处理
             //System.Runtime.Serialization.Json.DataContractJsonSerializer dc = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(ResultData));
@@ -203,21 +207,25 @@ namespace Lin.Comm.Http
             //    Result(null, tmp.warning);
             //}
         }
+
+
+
+        public class ResultData
+        {
+            public long code { get; set; }
+            public long sequeueid { get; set; }
+            //public object result { get; set; }
+            public string message { get; set; }
+            public IList<Error> warning { get; set; }
+
+            public string cause { get; set; }
+
+            public string stackTrace { get; set; }
+
+            public int dataType { get; set; }
+        }
     }
 
 
-    public class ResultData
-    {
-        public long code { get; set; }
-        public long sequeueid { get; set; }
-        //public object result { get; set; }
-        public string message { get; set; }
-        public IList<Error> warning { get; set; }
-
-        public string cause { get; set; }
-
-        public string stackTrace { get; set; }
-
-        public int dataType { get; set; }
-    }
+   
 }

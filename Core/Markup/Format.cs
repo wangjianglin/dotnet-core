@@ -7,14 +7,6 @@ using System.Windows;
 using System.Reflection;
 using System.Windows.Data;
 
-
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.Markup")]
-
-#endregion
-
-
 namespace Lin.Core.Markup
 {
     public class Format : MarkupExtension

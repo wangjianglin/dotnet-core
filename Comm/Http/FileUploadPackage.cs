@@ -7,7 +7,7 @@ using Lin.Comm.Http.Packages;
 
 namespace Lin.Comm.Http
 {
-    public class FileUploadPackage:Package
+    public class FileUploadPackage:HttpPackage
     {
         public FileUploadPackage()
         {

@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace Lin.Core.Controls
+namespace Lin.Core.Template
 {
     /// <summary>
     /// 根据属性选择模版
+    /// 根据对象属性的值不样，用不同的模板显示数据
     /// </summary>
     public class PropertyTemplateSelector : System.Windows.Controls.DataTemplateSelector
     {

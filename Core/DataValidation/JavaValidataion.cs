@@ -81,7 +81,7 @@ namespace Lin.Core.DataValidation
                         };
             } 
         }
-        public static void AddValidation(Package package, Lin.Comm.Http.ValidationErrorData error)
+        public static void AddValidation(HttpPackage package, Lin.Comm.Http.ValidationErrorData error)
         {
             IDictionary<string, object> param = package.GetParams();
             foreach (KeyValuePair<string,object> vp in param)

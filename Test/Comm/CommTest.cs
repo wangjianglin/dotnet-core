@@ -45,7 +45,7 @@ namespace AD.Test.Comm
             }
         }
         [TestMethod]
-        public void TestComm()
+        public void TestTcpComm()
         {
             Lin.Comm.Tcp.Communicate server = new Lin.Comm.Tcp.Communicate((session,pack,response) =>
             {

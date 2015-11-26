@@ -58,8 +58,13 @@ using System.Windows;
 
 #region Namespce mapping
 
-[assembly: System.Windows.Markup.XmlnsDefinition("http://lin/2012/xaml/presentation", "Lin.Core.Utils")]
-[assembly: System.Windows.Markup.XmlnsDefinition("http://lin/2012/xaml/presentation", "Lin.Core.Converter")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core.Utils")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core.Converter")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core.Commands")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core.DataValidation")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core.Markup")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core.Controls")]
+[assembly: System.Windows.Markup.XmlnsDefinition("http://as-6.com/xaml", "Lin.Core")]
 
 #endregion
 

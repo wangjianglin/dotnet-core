@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lin.Comm.Http
 {
-    public class FileDeletePackage:Package
+    public class FileDeletePackage:HttpPackage
     {
         public FileDeletePackage()
         {

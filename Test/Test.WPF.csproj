@@ -11,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AD.Test</RootNamespace>
     <AssemblyName>AD.Test</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <SccProjectName>Svn</SccProjectName>
@@ -83,13 +83,14 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="Comm\CommTest.cs" />
     <Compile Include="Comm\JsonPackageTest.cs" />
+    <Compile Include="Comm\TestConstants.cs" />
     <Compile Include="Core\AudioTest.cs" />
     <Compile Include="Core\ConfigChangedTest.cs" />
     <Compile Include="Core\ConfigManagerTest.cs" />
     <Compile Include="Core\DataValidation\RegularExpression.cs" />
     <Compile Include="Core\Dynamic.cs" />
     <Compile Include="Core\FileTest.cs" />
-    <Compile Include="Core\HttpTest.cs" />
+    <Compile Include="Comm\HttpTest.cs" />
     <Compile Include="Core\JsonTest.cs" />
     <Compile Include="Core\LoggerTest.cs" />
     <Compile Include="Core\Math\ComplexTest.cs" />
@@ -104,15 +105,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\ContextTest.cs" />
     <Compile Include="UnitTest1.cs" />
+    <Compile Include="Util\JsonTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Comm\Comm.csproj">
       <Project>{593c6704-7d65-4283-8204-4679a7c5b94e}</Project>
       <Name>Comm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.WPF.csproj">
-      <Project>{ef7b23ca-42bb-4a6f-aa05-46ce65b9516f}</Project>
-      <Name>Core.WPF</Name>
     </ProjectReference>
     <ProjectReference Include="..\Plugin\Plugin.csproj">
       <Project>{5da527f1-87ac-424e-98dd-687c8c6dd33b}</Project>

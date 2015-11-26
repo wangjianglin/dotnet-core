@@ -17,14 +17,14 @@ namespace Lin.Comm.Http
     /// <summary>
     /// 
     /// </summary>
-    public abstract class Package
+    public abstract class HttpPackage
     {
-        public static readonly IHttpRequestHandle JSON = new JsonHttpRequestHandle();
+        public static readonly IHttpRequestHandle JSON = new StandardJsonHttpRequestHandle();
         public static readonly IHttpRequestHandle NONE = new NoneHttpRequestHandle();
         //public virtual UrlType UrlType { get; protected set; }
         private static readonly Type _DefautlRespType = typeof(string);
 
-        static Package()
+        static HttpPackage()
         {
             
             //如果没有配置主版，则默认为无版本信息
@@ -36,7 +36,7 @@ namespace Lin.Comm.Http
         /// </summary>
         //[DefaultValue(false)]
         public virtual bool EnableCache { get; protected set; }
-        public Package()
+        public HttpPackage()
         {
             //EnableCache = false;
             //UrlType = Packages.UrlType.RELATIVE;

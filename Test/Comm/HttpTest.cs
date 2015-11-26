@@ -10,10 +10,10 @@ using Lin.Comm.Http.Packages;
 using Lin.Comm.Http;
 
 
-namespace AD.Test.Core
+namespace AD.Test.Comm
 {
 
-    public class ExceptionPackage : Package
+    public class ExceptionPackage : HttpPackage
     {
         public ExceptionPackage()
         {
@@ -29,7 +29,7 @@ namespace AD.Test.Core
         }
     }
 
-    public class AdExceptionPackage : Package
+    public class AdExceptionPackage : HttpPackage
     {
         public AdExceptionPackage()
         {
@@ -121,28 +121,35 @@ namespace AD.Test.Core
             //System.GC.Collect();
             //System.GC.Collect();
             //System.GC.Collect();
-            //Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/web/__http_comm_protocol__");
-            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://localhost:8080/lin.demo/");
+            Lin.Comm.Http.HttpCommunicate.CommUri = new Uri(TestConstants.HTTP_COMM_URL);
             HttpCommunicate.HttpRequest += (HttpCommunicateType type, object content) =>
             {
                 //Console.WriteLine("-------------2");
             };
-            object o = (object)null;
-            Console.WriteLine("obj:" + o);
-            for (int n = 0; n < 10; n++)
+
+            TestPackage package = new TestPackage();
+
+            //package.data = "test.";
+            //Request(package, (result, warning) =>
+            //{
+            //    Console.WriteLine("result:" + result);
+            //    Assert.IsTrue(package.data.Equals(result));
+            //}, error =>
+            //{
+            //    Console.WriteLine("error:" + error.cause);
+            //}, 0);
+
+
+            package.data = "测试中文";
+            Request(package, (result, warning) =>
             {
-                TestPackage package = new TestPackage();
-                package.data = "测试中文";
-                package.data = "test.";
-                Request(package, (result, warning) =>
-                {
-                    Console.WriteLine("result:" + result);
-                    Assert.IsTrue(package.data.Equals(result));
-                }, error =>
-                {
-                    Console.WriteLine("error:" + error.cause);
-                }, 0);
-            }
+                Console.WriteLine("result:" + result);
+                Assert.IsTrue(package.data.Equals(result));
+            }, error =>
+            {
+                Console.WriteLine("error:" + error.cause);
+            }, 0);
+            
         }
 
         [TestMethod]
@@ -191,6 +198,26 @@ namespace AD.Test.Core
             json = new StreamReader(stream, Encoding.UTF8, true).ReadToEnd();
             Console.WriteLine("json:" + json);
         }
+
+        //[TestMethod]
+        //public void TestGoodsPackage()
+        //{
+        //    Lin.Comm.Http.HttpCommunicate.CommUri = new Uri("http://10.211.55.2:8080/fcbb_b2b2c/");
+        //    GoodsPackage pack = new GoodsPackage();
+        //    pack.userId = 40;
+        //    pack.userRole = "ADMIN";
+        //    pack.pageSize = 20;
+        //    pack.pageNo = 0;
+
+        //    Request(pack, (result, warning) =>
+        //    {
+        //        Console.WriteLine("result:" + result);
+        //    }, error =>
+        //    {
+        //        Console.WriteLine("error:" + error.cause);
+        //    }, 0);
+        //}
        
     }
+
 }

@@ -3,12 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
- 
-#region Namespce mapping
 
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.Controls")]
-
-#endregion
 
 namespace Lin.Core.Controls
 {

@@ -42,16 +42,16 @@ namespace Lin.Core.Config
         private readonly string listenerKey = "Listener_Key_" + DateTime.Now.Ticks;
         internal ConfigManagerProxy(string section)
         {
-            this.section = section;
-            AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
-            appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + listenerKey, new ListenerEvent(this));
-            appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey, section);
-            appdomain.DoCallBack(() =>
-            {
-                ListenerEvent listener = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + listenerKey) as ListenerEvent;
-                ConfigManager.ProxyGetConfigManager(AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey).ToString()).AddListener(listener);
-            });
-            appdomain.SetData(listenerKey, null);
+            //this.section = section;
+            //AppDomain appdomain = GetAppDomain.GetSingleDomainAndCreate();
+            //appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + listenerKey, new ListenerEvent(this));
+            //appdomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey, section);
+            //appdomain.DoCallBack(() =>
+            //{
+            //    ListenerEvent listener = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + listenerKey) as ListenerEvent;
+            //    ConfigManager.ProxyGetConfigManager(AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey).ToString()).AddListener(listener);
+            //});
+            //appdomain.SetData(listenerKey, null);
         }
 
         /// <summary>
@@ -62,16 +62,16 @@ namespace Lin.Core.Config
         {
             get
             {
-                AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
-                appDomain.DoCallBack(() =>
-                {
-                    string[] sectionObj = ConfigManager.ProxyGetConfigManager(section).Section;
-                    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey, sectionObj);
-                });
-                if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey) != null)
-                {
-                    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey) as string[];
-                }
+                //AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
+                //appDomain.DoCallBack(() =>
+                //{
+                //    string[] sectionObj = ConfigManager.ProxyGetConfigManager(section).Section;
+                //    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey, sectionObj);
+                //});
+                //if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey) != null)
+                //{
+                //    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey) as string[];
+                //}
                 return null;
             }
         }
@@ -84,16 +84,16 @@ namespace Lin.Core.Config
         {
             get
             {
-                AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
-                appDomain.DoCallBack(() =>
-                {
-                    string[] valuesObj = ConfigManager.ProxyGetConfigManager(section).Values;
-                    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + ValuesKey, valuesObj);
-                });
-                if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + ValuesKey) != null)
-                {
-                    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + ValuesKey) as string[];
-                }
+                //AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
+                //appDomain.DoCallBack(() =>
+                //{
+                //    string[] valuesObj = ConfigManager.ProxyGetConfigManager(section).Values;
+                //    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + ValuesKey, valuesObj);
+                //});
+                //if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + ValuesKey) != null)
+                //{
+                //    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + ValuesKey) as string[];
+                //}
                 return null;
             }
         }
@@ -106,16 +106,16 @@ namespace Lin.Core.Config
         {
             get
             {
-                AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
-                appDomain.DoCallBack(() =>
-                {
-                    string[] namesObj = ConfigManager.ProxyGetConfigManager(section).Names;
-                    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + namesKey, namesObj);
-                });
-                if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + namesKey) != null)
-                {
-                    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + namesKey) as string[];
-                }
+                //AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
+                //appDomain.DoCallBack(() =>
+                //{
+                //    string[] namesObj = ConfigManager.ProxyGetConfigManager(section).Names;
+                //    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + namesKey, namesObj);
+                //});
+                //if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + namesKey) != null)
+                //{
+                //    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + namesKey) as string[];
+                //}
                 return null;
             }
         }
@@ -130,42 +130,42 @@ namespace Lin.Core.Config
         {
             get
             {
-                AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
-                appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey, name);
-                appDomain.DoCallBack(() =>
-                {
-                    string nameKeyObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey).ToString();
-                    string propertyValueObj = ConfigManager.ProxyGetConfigManager(section)[nameKeyObj];
-                    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyValueKey, propertyValueObj);
-                });
-                if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyValueKey) != null)
-                {
-                    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyValueKey).ToString();
-                }
+                //AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
+                //appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey, name);
+                //appDomain.DoCallBack(() =>
+                //{
+                //    string nameKeyObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey).ToString();
+                //    string propertyValueObj = ConfigManager.ProxyGetConfigManager(section)[nameKeyObj];
+                //    AppDomain.CurrentDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyValueKey, propertyValueObj);
+                //});
+                //if (appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyValueKey) != null)
+                //{
+                //    return appDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + propertyValueKey).ToString();
+                //}
                 return null;
             }
             set
             {
-                AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
-                appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey, name);
-                appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey, value);
-                appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey, section);
-                appDomain.DoCallBack(() =>
-                {
-                    string nameKeyObjValue = "";
-                    string valueObjValue = "";
-                    object nameObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey);
-                    object valueObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey);
-                    if (nameObj != null)
-                    {
-                        nameKeyObjValue = nameObj.ToString();
-                    }
-                    if (valueObj != null)
-                    {
-                        valueObjValue = valueObj.ToString();
-                    }
-                    ConfigManager.ProxyGetConfigManager(AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey).ToString())[nameKeyObjValue] = valueObjValue;
-                });
+                //AppDomain appDomain = GetAppDomain.GetSingleDomainAndCreate();
+                //appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey, name);
+                //appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey, value);
+                //appDomain.SetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey, section);
+                //appDomain.DoCallBack(() =>
+                //{
+                //    string nameKeyObjValue = "";
+                //    string valueObjValue = "";
+                //    object nameObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + nameKey);
+                //    object valueObj = AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + valueKey);
+                //    if (nameObj != null)
+                //    {
+                //        nameKeyObjValue = nameObj.ToString();
+                //    }
+                //    if (valueObj != null)
+                //    {
+                //        valueObjValue = valueObj.ToString();
+                //    }
+                //    ConfigManager.ProxyGetConfigManager(AppDomain.CurrentDomain.GetData(System.Threading.Thread.CurrentThread.ManagedThreadId + sectionKey).ToString())[nameKeyObjValue] = valueObjValue;
+                //});
             }
         }
 

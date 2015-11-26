@@ -8,9 +8,9 @@
     <ProjectGuid>{4BA38BC8-D248-4E60-9D58-A4602A0F454A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AD.ECM</RootNamespace>
-    <AssemblyName>ECM</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>lin.lin</RootNamespace>
+    <AssemblyName>lin</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -42,7 +42,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WPF;ADOWS_TEST</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WPF</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -195,6 +195,7 @@
 @rem Move /y $(ProjectDir)..\Update\bin\$(Configuration)\*.exe $(ProjectDir)\bin\$(Configuration)\AutoUpdate
 @rem Move /y $(ProjectDir)..\Update\bin\$(Configuration)\*.config $(ProjectDir)\bin\$(Configuration)\AutoUpdate
 @rem Move /y $(ProjectDir)..\Update\bin\$(Configuration)\*.dll $(ProjectDir)\bin\$(Configuration)\AutoUpdate
+
 @rem Copy /y $(ProjectDir)\Help.xps $(ProjectDir)\bin\$(Configuration)\HelpFile
 @rem if $(Configuration)==Release Del $(ProjectDir)\bin\$(Configuration)\lib\*.pdb
 @rem if not exist $(ProjectDir)\bin\$(Configuration)\lib\0.1 md $(ProjectDir)\bin\$(Configuration)\lib\0.1

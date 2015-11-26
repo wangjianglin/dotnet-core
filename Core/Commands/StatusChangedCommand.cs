@@ -6,14 +6,11 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Controls;
 
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.Controls")]
-
-#endregion
- 
 namespace Lin.Core.Controls
 {
+    /// <summary>
+    /// 当控件状态改变时，触发相依的命令
+    /// </summary>
     public static class StatusChangedCommand
     {
         #region  页面加载完毕后的参数

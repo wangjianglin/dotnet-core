@@ -117,11 +117,12 @@ namespace Lin.Core
             //else
             //{
             //Dispatcher.CurrentDispatcher
-            CurrentDispatcher.BeginInvoke(new System.Action(() =>
-                {
-                    back(args);
-                }), null);
-            //}
+            if (CurrentDispatcher != null) { 
+                CurrentDispatcher.BeginInvoke(new System.Action(() =>
+                    {
+                        back(args);
+                    }), null);
+            }
         }
 
 

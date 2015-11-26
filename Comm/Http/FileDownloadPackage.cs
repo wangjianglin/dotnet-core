@@ -7,7 +7,7 @@ using Lin.Comm.Http.Packages;
 
 namespace Lin.Comm.Http
 {
-    public class FileDownloadPackage : Package
+    public class FileDownloadPackage : HttpPackage
     {
         public FileDownloadPackage()
         {

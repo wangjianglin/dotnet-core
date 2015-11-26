@@ -14,13 +14,6 @@ using System.Windows.Shapes;
 using System.Globalization;
 
 
-
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.DataValidation")]
-
-#endregion
-
 namespace Lin.Core.DataValidation
 { 
     public class IsEmptyRule : ValidationRule

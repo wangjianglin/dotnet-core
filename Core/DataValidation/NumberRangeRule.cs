@@ -6,14 +6,6 @@ using System.Windows.Controls;
 using System.Globalization;
 
 
-
-#region Namespce mapping
-
-[assembly: System.Windows.Markup.XmlnsDefinition("http://ad/2012/xaml/presentation", "Lin.Core.DataValidation")]
-
-#endregion
-
-
 namespace Lin.Core.DataValidation
 {
     public enum MeasuringRang

@@ -11,12 +11,12 @@ namespace Lin.Comm.Http
     /// </summary>
     internal class ResourceHttpRequestHandle : IHttpRequestHandle
     {
-        public string GetParams(HttpWebRequest request, Package package)
+        public byte[] GetParams(HttpWebRequest request, HttpPackage package)
         {
             throw new NotImplementedException();
         }
 
-        public void Response(Package package, string resp, Action<object, IList<Error>> result, Action<Error> fault)
+        public void Response(HttpPackage package, byte[] bs, Action<object, IList<Error>> result, Action<Error> fault)
         {
             throw new NotImplementedException();
         }

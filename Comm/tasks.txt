@@ -10,3 +10,7 @@ lock (serverSessions)
         sessionListener.Destory(session);
     }
 }
+
+HttpPackage 增加 Attribute
+
+HttpCommunicate 返回到UI线程

@@ -25,7 +25,7 @@ namespace AD.Test
         /// <param name="result"></param>
         /// <param name="fault"></param>
         /// <param name="code">当出现错误时，错误码不为code时，测试失败,为null则不处理</param>
-        public void Request(Package package, Action<object, IList<Error>> result = null, Action<Error> fault = null,long? code = 0)
+        public void Request(HttpPackage package, Action<object, IList<Error>> result = null, Action<Error> fault = null,long? code = 0)
         {
             //AutoResetEvent are = new AutoResetEvent(false);
             bool flag = false;

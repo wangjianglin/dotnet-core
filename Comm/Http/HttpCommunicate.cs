@@ -205,7 +205,7 @@ namespace Lin.Comm.Http
         /// <param name="package"></param>
         /// <param name="result"></param>
         /// <param name="fault"></param>
-        public static HttpCommunicateResult Request(Package package, Action<object, IList<Error>> result = null, Action<Error> fault = null)
+        public static HttpCommunicateResult Request(HttpPackage package, Action<object, IList<Error>> result = null, Action<Error> fault = null)
         {
             return global.Request(package, result, fault);
         }
@@ -386,7 +386,7 @@ namespace Lin.Comm.Http
         /// <param name="fault"></param>
         /// <param name="sync">表示是否同步调用，true表示同步调用，false表示异步调用</param>
         //public static HttpCommunicatResult Request(Package package, Action<object, IList<Error>> result = null, Action<Error> fault = null, bool sync = false)
-        public HttpCommunicateResult Request(Package package, Action<object, IList<Error>> result = null, Action<Error> fault = null)
+        public HttpCommunicateResult Request(HttpPackage package, Action<object, IList<Error>> result = null, Action<Error> fault = null)
         {
             FireHttpRequest(HttpCommunicateType.Request, package);
             AutoResetEvent are = new AutoResetEvent(false);
@@ -400,7 +400,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = true;
+                        //r.Result = true;
+                        r.SetResult(true, rs);
                         FireHttpRequestComplete(HttpCommunicateType.Request, package, rs, warning);
                     }, () =>
                     {
@@ -417,7 +418,8 @@ namespace Lin.Comm.Http
                  {
                      Lin.Util.ActionExecute.Execute(() =>
                      {
-                         r.Result = false;
+                         //r.Result = false;
+                         r.SetResult(false, null);
                          FireHttpRequestFault(HttpCommunicateType.Request, package, e);
                      }, () =>
                      {
@@ -457,7 +459,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = true;
+                        //r.Result = true;
+                        r.SetResult(true, resultObject);
                         FireHttpRequestComplete(HttpCommunicateType.Download, file, resultObject, null);
                     }, () =>
                     {
@@ -473,7 +476,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = false;
+                        //r.Result = false;
+                        r.SetResult(false, null);
                         FireHttpRequestFault(HttpCommunicateType.Download, file, new Error());
                     }, () =>
                     {
@@ -516,7 +520,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = true;
+                        //r.Result = true;
+                        r.SetResult(true, resultObject);
                         FireHttpRequestComplete(HttpCommunicateType.Download, file, resultObject, null);
                     }, () =>
                     {
@@ -532,7 +537,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = false;
+                        //r.Result = false;
+                        r.SetResult(false, null);
                         FireHttpRequestFault(HttpCommunicateType.Download, file, new Error());
                     }, () =>
                     {
@@ -575,7 +581,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = true;
+                        //r.Result = true;
+                        r.SetResult(true, resultObject);
                         FireHttpRequestComplete(HttpCommunicateType.Download, file, resultObject, null);
                     }, () =>
                     {
@@ -591,7 +598,8 @@ namespace Lin.Comm.Http
                 {
                     Lin.Util.ActionExecute.Execute(() =>
                     {
-                        r.Result = false;
+                        //r.Result = false;
+                        r.SetResult(false, null);
                         FireHttpRequestFault(HttpCommunicateType.Download, file, new Error());
                     }, () =>
                     {
@@ -630,7 +638,8 @@ namespace Lin.Comm.Http
             this.abort = abort;
         }
 
-        private bool _result = false;
+        private bool _isSuccess = false;
+        private object _result = null;
 
         /// <summary>
         /// 中断请求
@@ -656,7 +665,25 @@ namespace Lin.Comm.Http
         /// <summary>
         /// 请求结果，true表示成功，false表示失败
         /// </summary>
-        public bool Result
+        public bool IsSuccess
+        {
+            get
+            {
+                if (are != null)
+                {
+                    are.WaitOne();
+                }
+                return _isSuccess;
+            }
+        }
+
+        internal void SetResult(bool isSuccess, object result)
+        {
+            this._isSuccess = isSuccess;
+            this._result = result;
+        }
+
+        public object Result
         {
             get
             {
@@ -665,10 +692,6 @@ namespace Lin.Comm.Http
                     are.WaitOne();
                 }
                 return _result;
-            }
-            internal set
-            {
-                _result = value;
             }
         }
     }

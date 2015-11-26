@@ -13,8 +13,8 @@ namespace Lin.Comm.Http
         /// </summary>
         /// <param name="package"></param>
         /// <returns></returns>
-        string GetParams(HttpWebRequest request,Package package);
+        byte[] GetParams(HttpWebRequest request, HttpPackage package);
 
-        void Response(Package package, string resp, Action<Object, IList<Error>> result, Action<Error> fault);
+        void Response(HttpPackage package, byte[] bs, Action<Object, IList<Error>> result, Action<Error> fault);
     }
 }
